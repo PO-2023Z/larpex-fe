@@ -6,6 +6,6 @@ function App() {
       <h1>LARPEX WEB APP</h1>
     </div>
   );
-}
+
 
 export default App;
