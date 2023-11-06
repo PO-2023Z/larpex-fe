@@ -1,0 +1,32 @@
+name: Frontend
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  buildFRONTEND:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        working-directory: larpex-web-fe
+        run: npm install
+
+      - name: Run build
+        working-directory: larpex-web-fe
+        run: npm run build
+        continue-on-error: false
+      - name: Check build errors
+        run: |
+          if [[ ${{ job.status }} == 'failure' ]]; then
+            echo "Build failes. Aborting the push."
+            exit 1
+          fi
+        shell: bash
