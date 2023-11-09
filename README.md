@@ -8,9 +8,9 @@ Aplikacja webowa do zarządzania wydarzeniami LARP.
 * **Konwencja rozszerzeń plików (.tsx, .ts)**
 
   Propozycja, by komponenty Reactowe tworzyć z rozszerzeniem .tsx, a pliki gdzie mamy funkcje do np. wyciągania danych z BE, czy logiki .ts. To może nam pozwlić przy szybkim "skanowaniu" struktury katalogów, w którym pliki znajdziemy logikę, a w którym sam widok.
-* **Komponenty OgólnoDostępne**
+* **Komponenty Ogólnodostępne**
 
-Do komponentów ogólnych twórzmy dedykowane katalogi w /src, a nie wewnątrz naszych UC. To tyczy się przykładowo AppLayout/Navbar, gdzie mamy nasz pasek nawigacyjny, który jest komponentem ogólnym do całej aplikacji.
+  Do komponentów ogólnych twórzmy dedykowane katalogi w /src, a nie wewnątrz naszych UC. To tyczy się przykładowo AppLayout/Navbar, gdzie mamy nasz pasek nawigacyjny, który jest komponentem ogólnym do całej aplikacji.
 * **Reużywalne mechaniki**
 
   W katalogu /src mamy podkatalog */globals* tam możemy umieszczać mechanizmy ogólne, z których kilka zespołów korzysta. Ja umiściłem plik connections.ts, gdzie mamy export apiUrl, żebyśmy sobie importowali z tamtąd, a nie hardcodowali w różnych miejscach apliakcji ten sam url. Po to jest ten katalog /globals.
