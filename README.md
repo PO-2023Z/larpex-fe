@@ -4,7 +4,7 @@ Aplikacja webowa do zarządzania wydarzeniami LARP.
 ## Zaproponowane konwencje i praktyki
 * **Konwencja nazewnicza plików i katalogów**
 
-  Do nazywania katalogów używamy pascalCase (myComponent), a komponenty nazywamy CamelCase (MyComponent.tsx)
+  Do nazywania katalogów używamy camelCase (myComponent), a komponenty nazywamy PascalCase (MyComponent.tsx)
 * **Konwencja rozszerzeń plików (.tsx, .ts)**
 
   Propozycja, by komponenty Reactowe tworzyć z rozszerzeniem .tsx, a pliki gdzie mamy funkcje do np. wyciągania danych z BE, czy logiki .ts. To może nam pozwlić przy szybkim "skanowaniu" struktury katalogów, w którym pliki znajdziemy logikę, a w którym sam widok.
