@@ -26,12 +26,17 @@ export const startPayment = async (
 export const makePayment = async (
   paymentDto: PaymentDto
 ): Promise<{ paymentStatus: PaymentStatus; redirectUrl: string }> => {
-  // Simulate API call delay
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  // Mocked API call (replace with actual API call)
+  const mockedResponse: { paymentStatus: PaymentStatus; redirectUrl: string } =
+    {
+      paymentStatus: PaymentStatus.SUCCESS, // Change as needed
+      redirectUrl: "https://example.com", // Change as needed
+    };
 
-  // Mocked API response
-  const paymentStatus = PaymentStatus.SUCCESS; // Change as needed
-  const redirectUrl = "https://example.com"; // Change as needed
-
-  return { paymentStatus, redirectUrl };
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Mocked API Response:", mockedResponse);
+      resolve(mockedResponse);
+    }, 5000); // Simulating a 5-second API call
+  });
 };
