@@ -17,6 +17,7 @@
   --secondary-color: white;
   --dark-purple-color: #5a1fa3;
   --light-purple-color: #aa75eb;
+  --gray-color: rgb(224, 218, 218);
 
   --font-size-xs: 10px;
   --font-size-sm: 14px;
@@ -42,6 +43,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: "Courier New", monospace;
+  overflow-x: hidden; /* Add this line to hide horizontal scrollbar */
 }
 
 h1 {

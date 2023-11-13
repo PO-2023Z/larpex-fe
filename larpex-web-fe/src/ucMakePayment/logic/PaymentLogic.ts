@@ -41,6 +41,6 @@ export const makePayment = async (
     setTimeout(() => {
       console.log("Mocked API Response:", mockedResponse);
       resolve(mockedResponse);
-    }, 5000);
+    }, 3500);
   });
 };
