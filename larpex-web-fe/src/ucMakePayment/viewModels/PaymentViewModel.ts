@@ -17,9 +17,12 @@ export enum PaymentMethod {
   BLIK = "BLIK",
   CARD = "CARD",
   TRANSFER = "TRANSFER",
+  SMS = "SMS",
+  BANKTRANSFER = "BANKTRANSFER",
 }
 
 export enum PaymentStatus {
   SUCCESS = "SUCCESS",
   FAILURE = "FAILURE",
+  NOTSTARTED = "NOTSTARTED",
 }
