@@ -73,3 +73,7 @@
 .payment-method-select:focus {
   border-color: var(--dark-purple-color);
 }
+
+.center-text {
+  text-align: center;
+}

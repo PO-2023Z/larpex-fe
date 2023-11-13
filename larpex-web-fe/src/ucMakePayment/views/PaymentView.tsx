@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { makePayment } from "../logic/PaymentLogic";
 import { PaymentMethod, PaymentStatus } from "../viewModels/PaymentViewModel";
+import { InfinitySpin } from "react-loader-spinner";
 import "./PaymentView.css";
+import { Alert } from "react-bootstrap";
 
 interface PaymentViewProps {}
 
@@ -21,6 +23,7 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
   const handlePay = async () => {
     try {
       setLoading(true);
+      setPaymentResponse(null);
 
       // Hardcoded userId for simulation (replace with actual user authentication)
       const userId = "12345";
@@ -36,7 +39,7 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
 
       setPaymentResponse(response);
     } catch (error) {
-      console.error("Error making payment:", error);
+      console.error("Error while making payment:", error);
     } finally {
       setLoading(false);
     }
@@ -72,10 +75,18 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
           </button>
         </div>
       </form>
-      {loading && <p>Loading...</p>}
+      {loading && <InfinitySpin width="200" color="#8a1ff3" />}
       {paymentResponse && (
         <div className="response-div">
-          <p>Payment Status: {paymentResponse.paymentStatus}</p>
+          {paymentResponse.paymentStatus === PaymentStatus.FAILURE ? (
+            <Alert variant="danger" className="center-text">
+              Payment Status: {paymentResponse.paymentStatus}
+            </Alert>
+          ) : (
+            <Alert variant="success" className="center-text">
+              Payment Status: {paymentResponse.paymentStatus}
+            </Alert>
+          )}
           <p>Redirect URL: {paymentResponse.redirectUrl}</p>
         </div>
       )}
