@@ -12,6 +12,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --main-color: #8a1ff3;
+  --secondary-color: white;
+  --dark-purple-color: #5a1fa3;
+  --light-purple-color: #aa75eb;
 }
 
 a {
@@ -26,9 +31,9 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: "Courier New", monospace;
 }
 
 h1 {
