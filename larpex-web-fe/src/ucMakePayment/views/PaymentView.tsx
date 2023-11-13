@@ -1,34 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { InitPaymentResponse } from "../viewModels/PaymentViewModel";
+import React from "react";
+import { useParams } from "react-router-dom";
+import { PaymentMethod } from "../viewModels/PaymentViewModel";
 
-interface PaymentViewProps {}
+interface PaymentViewProps {
+  // You can add more props if needed
+}
 
 const PaymentView: React.FC<PaymentViewProps> = () => {
-  const location = useLocation() as {
-    state: { response: InitPaymentResponse };
-  };
-  const [initPaymentResponse, setInitPaymentResponse] =
-    useState<InitPaymentResponse | null>(null);
+  const { paymentId } = useParams();
 
-  useEffect(() => {
-    if (location.state?.response) {
-      setInitPaymentResponse(location.state.response);
-    }
-  }, [location.state]);
+  // Assume paymentAmount is passed as a prop or from state
+  const paymentAmount = 50; // Replace with actual paymentAmount
 
   return (
     <div>
-      {initPaymentResponse ? (
-        <>
-          <h2>Payment Details</h2>
-          <p>Payment ID: {initPaymentResponse.paymentId}</p>
-          <p>Payment Amount: {initPaymentResponse.paymentAmount}</p>
-          {/* Add additional details as needed */}
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <p>Payment ID: {paymentId}</p>
+      <p>Payment Amount: {paymentAmount}</p>
+      <label>
+        Payment Method:
+        <select>
+          {Object.values(PaymentMethod).map((method) => (
+            <option key={method} value={method}>
+              {method}
+            </option>
+          ))}
+        </select>
+      </label>
     </div>
   );
 };
