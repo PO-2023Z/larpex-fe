@@ -8,14 +8,16 @@ interface PaymentViewProps {
 }
 
 const PaymentView: React.FC<PaymentViewProps> = () => {
-  const { paymentId } = useParams();
-  const paymentAmount = 50; // Replace with actual paymentAmount
+  const { paymentId, paymentAmount } = useParams();
+  const parsedPaymentAmount = paymentAmount ? parseInt(paymentAmount, 10) : 0;
 
   const [loading, setLoading] = useState<boolean>(false);
   const [paymentResponse, setPaymentResponse] = useState<{
     paymentStatus: PaymentStatus;
     redirectUrl: string;
   } | null>(null);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState<PaymentMethod>(PaymentMethod.CARD);
 
   const handlePay = async () => {
     try {
@@ -26,8 +28,9 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
 
       const paymentDto = {
         paymentId: Number(paymentId),
-        paymentMethod: PaymentMethod.CARD, // You can replace this with the selected payment method
+        paymentMethod: selectedPaymentMethod,
         userId,
+        paymentAmount: parsedPaymentAmount,
       };
 
       const response = await makePayment(paymentDto);
@@ -43,10 +46,15 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
   return (
     <div>
       <p>Payment ID: {paymentId}</p>
-      <p>Payment Amount: {paymentAmount}</p>
+      <p>Payment Amount: {parsedPaymentAmount}</p>
       <label>
         Payment Method:
-        <select>
+        <select
+          value={selectedPaymentMethod}
+          onChange={(e) =>
+            setSelectedPaymentMethod(e.target.value as PaymentMethod)
+          }
+        >
           {Object.values(PaymentMethod).map((method) => (
             <option key={method} value={method}>
               {method}

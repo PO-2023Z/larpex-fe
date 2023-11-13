@@ -12,14 +12,16 @@ export const startPayment = async (
   // Mocked API call (replace with actual API call)
   const mockedResponse: InitPaymentResponse = {
     paymentId: 123,
-    paymentAmount: 50,
+    paymentAmount: 70,
   };
+
+  console.log("taken initPaymentDto: ", initPaymentDto);
 
   return new Promise((resolve) => {
     setTimeout(() => {
       console.log("Mocked API Response:", mockedResponse);
       resolve(mockedResponse);
-    }, 1000); // Simulating a 1-second API call
+    }, 1000);
   });
 };
 
@@ -29,14 +31,16 @@ export const makePayment = async (
   // Mocked API call (replace with actual API call)
   const mockedResponse: { paymentStatus: PaymentStatus; redirectUrl: string } =
     {
-      paymentStatus: PaymentStatus.SUCCESS, // Change as needed
-      redirectUrl: "https://example.com", // Change as needed
+      paymentStatus: PaymentStatus.SUCCESS,
+      redirectUrl: "https://example.com",
     };
+
+  console.log("taken dto: ", paymentDto);
 
   return new Promise((resolve) => {
     setTimeout(() => {
       console.log("Mocked API Response:", mockedResponse);
       resolve(mockedResponse);
-    }, 5000); // Simulating a 5-second API call
+    }, 5000);
   });
 };
