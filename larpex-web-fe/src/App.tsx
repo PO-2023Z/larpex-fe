@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AppLayout from "./globals/appLayout/AppLayout.tsx";
 import PaymentStartView from "./ucMakePayment/views/PaymentStartView.tsx";
 import PaymentView from "./ucMakePayment/views/PaymentView.tsx";
+import EventOrganiserPanelView from "./ucEventOrganiserPanel/views/EventOrganiserPanelView.tsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<div>Home PAGE</div>} />
           <Route path="/events" element={<div>EVENTS PAGE</div>} />
+            <Route path="/events-organiser-panel" element={<EventOrganiserPanelView/>}/>
           <Route path="/start-payment" element={<PaymentStartView />} />
           <Route path="/payment" element={<PaymentView />} />
           <Route
