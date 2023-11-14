@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { makePayment } from "../logic/PaymentLogic";
+import { finalizePayment } from "../logic/PaymentService";
 import { PaymentMethod, PaymentStatus } from "../viewModels/PaymentViewModel";
 import { InfinitySpin } from "react-loader-spinner";
 import "./PaymentView.css";
@@ -35,7 +35,7 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
         paymentAmount: parsedPaymentAmount,
       };
 
-      const response = await makePayment(paymentDto);
+      const response = await finalizePayment(paymentDto);
 
       setPaymentResponse(response);
     } catch (error) {

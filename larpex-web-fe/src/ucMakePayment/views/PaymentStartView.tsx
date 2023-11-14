@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { startPayment } from "../logic/PaymentLogic";
+import { initPayment } from "../logic/PaymentService";
+import { InitPaymentDto } from "../viewModels/PaymentViewModel";
 import "./PaymentStartView.css";
 
 interface PaymentStartViewProps {}
@@ -8,10 +9,10 @@ interface PaymentStartViewProps {}
 const PaymentStartView: React.FC<PaymentStartViewProps> = () => {
   const navigate = useNavigate();
 
-  const handleStartPayment = async () => {
+  const handleInitPayment = async () => {
     try {
-      const initPaymentDto = { eventId: "your_event_id" }; // Replace with actual eventId
-      const response = await startPayment(initPaymentDto);
+      const initPaymentDto: InitPaymentDto = { eventId: "your_event_id" }; // Replace with actual eventId
+      const response = await initPayment(initPaymentDto);
       navigate(`/payment/${response.paymentId}/${response.paymentAmount}`);
     } catch (error) {
       console.error("Error starting payment:", error);
@@ -20,7 +21,7 @@ const PaymentStartView: React.FC<PaymentStartViewProps> = () => {
 
   return (
     <div className="init-payment-div">
-      <button className="start-payment-button" onClick={handleStartPayment}>
+      <button className="start-payment-button" onClick={handleInitPayment}>
         Start Payment
       </button>
     </div>

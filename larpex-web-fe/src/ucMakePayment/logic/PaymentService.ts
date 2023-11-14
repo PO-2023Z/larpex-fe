@@ -6,7 +6,7 @@ import {
   PaymentStatus,
 } from "../viewModels/PaymentViewModel";
 
-export const startPayment = async (
+export const initPayment = async (
   initPaymentDto: InitPaymentDto
 ): Promise<InitPaymentResponse> => {
   // Mocked API call (replace with actual API call)
@@ -25,7 +25,7 @@ export const startPayment = async (
   });
 };
 
-export const makePayment = async (
+export const finalizePayment = async (
   paymentDto: PaymentDto
 ): Promise<{ paymentStatus: PaymentStatus; redirectUrl: string }> => {
   // Mocked API call (replace with actual API call)
