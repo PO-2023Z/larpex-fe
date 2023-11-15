@@ -20,13 +20,15 @@ const EventListView: React.FC<EventListViewProps> = ({events}) => {
 
     return (
         <>
-            <div><h4>name  |  description  | ID</h4></div>
+            
+            
             <div className="EventListView">
+                
                 {events.map((item) => (
-                    <EventView name={item.desc} desc={item.desc} id={item.id}/>
+                    <li><EventView name={item.name} desc={item.desc} id={item.id}/></li>
                 ))                     
                     
-                } 
+                }
             </div>
         </>
     );

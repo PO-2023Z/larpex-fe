@@ -1,4 +1,6 @@
 import React from "react";
+import InvitationButtonView from "./InvitationButtonView.tsx";
+import EditEventButtonView from "./EditEventButtonView.tsx";
 
 interface EventViewProps {
     name:string;
@@ -9,14 +11,14 @@ interface EventViewProps {
 
 
  const EventView: React.FC<EventViewProps> = (EventViewProps) => {
+
+
+    
     return (
+        
         <div>
-            <div></div>
             <div>
-                <h4>{EventViewProps.name}
-                {EventViewProps.desc}
-                {EventViewProps.id}</h4>
-                <br></br>
+                <h5>{EventViewProps.name}  |  {EventViewProps.desc}  | {EventViewProps.id}  <InvitationButtonView/> <EditEventButtonView/></h5>
             </div>
         </div>
     );
