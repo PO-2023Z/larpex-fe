@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import EventListView from "./EventListView.tsx";
-import {EventViewDto} from "../viewModels/EventViewModel.ts";
+import {EventViewDto, EventStatus} from "../viewModels/EventViewModel.ts";
 import {getEventsData} from "../logic/EventOrganiserPanelService.ts";
 
 interface EventOrganiserPanelViewProps { }
@@ -13,27 +13,27 @@ const EventOrganiserPanelView: React.FC<EventOrganiserPanelViewProps> = () => {
         {
             name: 'event 0',
             desc: 'description 0',
-            id: '0',
+            id: '0', locationName: "", date: "",  description: "", status: EventStatus.CREATED, currentlySignedPlayers: 2, maxPlayers: 0
         },
         {
             name: 'event 1',
-            desc: 'description 1',
-            id: '1',
+            desc: 'description 1', 
+            id: '1', locationName: "", date: "",  description: "", status: EventStatus.CREATED, currentlySignedPlayers: 2, maxPlayers: 0
         },
         {
             name: 'event 2',
             desc: 'description 2',
-            id: '2',
+            id: '2', locationName: "", date: "",  description: "", status: EventStatus.CREATED, currentlySignedPlayers: 2, maxPlayers: 0
         },
         {
             name: 'event 3',
             desc: 'description 3',
-            id: '3',
+            id: '3', locationName: "", date: "",  description: "", status: EventStatus.CREATED, currentlySignedPlayers: 2, maxPlayers: 0
         },
         {
             name: 'event 4',
             desc: 'description 4',
-            id: '4',
+            id: '4', locationName: "", date: "",  description: "", status: EventStatus.CREATED, currentlySignedPlayers: 2, maxPlayers: 0
         },
     ]);
 
