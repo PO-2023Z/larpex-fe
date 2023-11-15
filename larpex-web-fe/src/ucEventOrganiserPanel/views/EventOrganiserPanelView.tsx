@@ -15,6 +15,10 @@ const EventOrganiserPanelView: React.FC<EventOrganiserPanelViewProps> = () => {
             try {
                 const result = await getEventsData();
                 setData(result);
+                console.log("promise");
+                console.log(result);
+                console.log("data");
+                console.log(data);
             } catch (error) {
                 // Handle errors here
             } finally {
