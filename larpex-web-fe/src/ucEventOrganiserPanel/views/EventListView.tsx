@@ -1,22 +1,24 @@
 import React from "react";
 import EventView from "./EventView.tsx";
-import { useState } from "react";
-import PropTypes from 'prop-types';
+import {EventStatus} from "../viewModels/EventViewModel.ts";
 
 
 interface EventListViewProps {
     events: {
-      name: string; // I assume ID is defined elsewhere
+      name: string; 
       desc: string;
       id: string;
+      locationName: string;
+      date: string;
+      description: string;
+      status: EventStatus;
+      currentlySignedPlayers: number;
+      maxPlayers: number;
     }[
     ]
   }
 
 const EventListView: React.FC<EventListViewProps> = ({events}) => {
-
-    
-    const list = ["raz","dwa","trzy"]
 
     return (
         <>

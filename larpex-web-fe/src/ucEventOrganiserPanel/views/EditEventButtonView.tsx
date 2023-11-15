@@ -1,5 +1,4 @@
 import React from "react";
-import EventView from "./EventView.tsx";
 
 interface EditEventButtonViewProps{}
 
