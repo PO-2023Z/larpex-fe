@@ -1,14 +1,25 @@
 import React from "react";
 
-interface EventViewProps { }
-const EventView: React.FC<EventViewProps> = () => {
+interface EventViewProps {
+    name:string;
+    desc:string;
+    id:string;
+ }
 
 
+
+ const EventView: React.FC<EventViewProps> = (EventViewProps) => {
     return (
-        <>
-            <div>eyo event</div>
-        </>
+        <div>
+            <div></div>
+            <div>
+                <h4>{EventViewProps.name}
+                {EventViewProps.desc}
+                {EventViewProps.id}</h4>
+                <br></br>
+            </div>
+        </div>
     );
-}
+} 
 
 export default EventView;
