@@ -6,6 +6,8 @@ import PaymentStartView from "./ucMakePayment/views/PaymentStartView.tsx";
 import PaymentView from "./ucMakePayment/views/PaymentView.tsx";
 import PaymentFinalView from "./ucMakePayment/views/PaymentFinalView.tsx";
 import EventOrganiserPanelView from "./ucEventOrganiserPanel/views/EventOrganiserPanelView.tsx";
+import CreateEventPage from "./ucCreateEvent/views/CreateEventPage.tsx";
+import EditEventPage from "./ucEditEvent/views/EditEventPage.tsx";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<div>Home PAGE</div>} />
+          <Route path="/create-event" element={<CreateEventPage />} />
+          <Route path="/events/:eventId" element={<EditEventPage />} />
           <Route path="/events" element={<div>EVENTS PAGE</div>} />
           <Route path="/events-organiser-panel" element={<EventOrganiserPanelView events={[]}/>}/>
           <Route path="/start-payment" element={<PaymentStartView />} />
@@ -21,6 +25,7 @@ function App() {
             path="/start-payment/:eventId"
             element={<PaymentStartView />}
           />
+          <Route path="/start-payment/:eventId" element={<PaymentStartView />} />
           <Route path="/payment" element={<PaymentView />} />
           <Route
             path="/payment/:paymentId/:paymentPrice"
