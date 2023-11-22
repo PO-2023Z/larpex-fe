@@ -1,1 +1,3 @@
-export const apiUrl = "http://localhost:5000";
+export const apiUrl = "https://larpex-api-gateway.azurewebsites.net/";
+export const validJWT =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhQGFhLnBsIiwibmJmIjoxNzAwNjg3MjYyLCJleHAiOjE3MDA2OTA4NjIsImlhdCI6MTcwMDY4NzI2MiwiaXNzIjoiTGFycGV4QXBwIn0.PadjFW6MNsmuh9hpbZD4ceasMC72Yy_wX8pbi8xEMj0";

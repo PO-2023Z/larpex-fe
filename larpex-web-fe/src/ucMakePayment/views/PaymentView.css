@@ -53,6 +53,7 @@
 
 .response-div {
   margin-top: 20px;
+  text-align: center;
 }
 
 .payment-method-select {
@@ -76,4 +77,15 @@
 
 .center-text {
   text-align: center;
+}
+
+.clickable-link {
+  width: 50%;
+  text-align: center;
+  display: block;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-size: 16px;
+  margin-left: 25%;
 }

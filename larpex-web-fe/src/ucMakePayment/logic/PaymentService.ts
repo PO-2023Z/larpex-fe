@@ -1,46 +1,49 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import axios from "axios";
 import {
   InitPaymentDto,
   InitPaymentResponse,
   PaymentDto,
-  PaymentStatus,
 } from "../viewModels/PaymentViewModel";
+import { apiUrl, validJWT } from "../../globals/connections";
 
 export const initPayment = async (
   initPaymentDto: InitPaymentDto
 ): Promise<InitPaymentResponse> => {
-  // Mocked API call (replace with actual API call)
-  const mockedResponse: InitPaymentResponse = {
-    paymentId: 123,
-    paymentAmount: 70,
-  };
+  try {
+    const response = await axios.post<InitPaymentResponse>(
+      apiUrl + "Payments/init",
+      initPaymentDto
+    );
 
-  console.log("taken initPaymentDto: ", initPaymentDto);
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log("Mocked API Response:", mockedResponse);
-      resolve(mockedResponse);
-    }, 1000);
-  });
+    const responseData: InitPaymentResponse = response.data;
+    return responseData;
+  } catch (error) {
+    console.error("Error on initialising payment:", error);
+    throw error;
+  }
 };
 
 export const finalizePayment = async (
   paymentDto: PaymentDto
-): Promise<{ paymentStatus: PaymentStatus; redirectUrl: string }> => {
-  // Mocked API call (replace with actual API call)
-  const mockedResponse: { paymentStatus: PaymentStatus; redirectUrl: string } =
-    {
-      paymentStatus: PaymentStatus.SUCCESS,
-      redirectUrl: "https://example.com",
-    };
+): Promise<string> => {
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
-  console.log("taken dto: ", paymentDto);
+    const response = await axios.post<string>(
+      apiUrl + "Payments/create-transaction",
+      paymentDto,
+      {
+        headers: {
+          Authorization: `Bearer ${validJWT}`,
+        },
+      }
+    );
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      console.log("Mocked API Response:", mockedResponse);
-      resolve(mockedResponse);
-    }, 3500);
-  });
+    const responseData: string = response.data;
+    return responseData;
+  } catch (error) {
+    console.error("Error on creating transaction: ", error);
+    throw error;
+  }
 };
