@@ -6,7 +6,7 @@ const InvitationButton: React.FC<InvitationButtonViewProps> = () => {
 
 
     return (
-        <button type="button">Send Invitation</button>
+        <button type="button" className="btn btn-primary">Send Invitation</button>
     );
 
                 

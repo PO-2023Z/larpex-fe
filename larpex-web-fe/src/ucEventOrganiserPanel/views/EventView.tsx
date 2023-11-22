@@ -18,7 +18,7 @@ interface EventViewProps {
         
         <div>
             <div>
-                <h5>{EventViewProps.name}  |  {EventViewProps.desc}  | {EventViewProps.id}  <InvitationButtonView/> <EditEventButtonView/></h5>
+                <h5><span className="d-inline-block text-truncate" style={{width: 30}}>{EventViewProps.id}</span> <span className="d-inline-block text-truncate" style={{width: 100}}>{EventViewProps.name}</span>   <span className="d-inline-block text-truncate" style={{width: 1000}}>{EventViewProps.desc}</span>     <InvitationButtonView/> <EditEventButtonView/></h5>
             </div>
         </div>
     );
