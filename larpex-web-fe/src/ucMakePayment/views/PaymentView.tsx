@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { makePayment } from "../logic/PaymentLogic";
-import { PaymentMethod, PaymentStatus } from "../viewModels/PaymentViewModel";
+import { finalizePayment } from "../logic/PaymentService";
+import { PaymentDto, PaymentMethod } from "../viewModels/PaymentViewModel";
 import { InfinitySpin } from "react-loader-spinner";
 import "./PaymentView.css";
-import { Alert } from "react-bootstrap";
 
 interface PaymentViewProps {}
 
 const PaymentView: React.FC<PaymentViewProps> = () => {
-  const { paymentId, paymentAmount } = useParams();
-  const parsedPaymentAmount = paymentAmount ? parseInt(paymentAmount, 10) : 0;
+  const { paymentId, paymentPrice } = useParams();
+  const parsedPaymentPrice = paymentPrice ? parseInt(paymentPrice, 10) : 0;
 
   const [loading, setLoading] = useState<boolean>(false);
   const [paymentResponse, setPaymentResponse] = useState<{
-    paymentStatus: PaymentStatus;
+    //paymentStatus: PaymentStatus;
     redirectUrl: string;
   } | null>(null);
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
@@ -25,17 +24,16 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
       setLoading(true);
       setPaymentResponse(null);
 
-      // Hardcoded userId for simulation (replace with actual user authentication)
-      const userId = "12345";
-
-      const paymentDto = {
+      // Hardcoded userToken for simulation (replace with actual user authentication)
+      const userToken = "12345";
+      const paymentDto: PaymentDto = {
         paymentId: Number(paymentId),
-        paymentMethod: selectedPaymentMethod,
-        userId,
-        paymentAmount: parsedPaymentAmount,
+        method: selectedPaymentMethod,
+        userToken,
+        //paymentPrice: parsedPaymentPrice,
       };
 
-      const response = await makePayment(paymentDto);
+      const response = await finalizePayment(paymentDto);
 
       setPaymentResponse(response);
     } catch (error) {
@@ -45,12 +43,13 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
     }
   };
 
+  /*
   return (
     <div className="payment-container">
       <form className="payment-form">
         <div className="payment-info">
           <p>Payment ID: {paymentId}</p>
-          <p>Payment Amount: {parsedPaymentAmount}</p>
+          <p>Payment Amount: {parsedPaymentPrice}</p>
         </div>
         <label className="payment-method-label">
           Payment Method:
@@ -92,6 +91,47 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
       )}
     </div>
   );
+  */
+ 
+  return (
+    <div className="payment-container">
+      <form className="payment-form">
+        <div className="payment-info">
+          <p>Payment ID: {paymentId}</p>
+          <p>Payment Amount: {parsedPaymentPrice}</p>
+        </div>
+        <label className="payment-method-label">
+          Payment Method:
+          <select
+            className="payment-method-select"
+            value={selectedPaymentMethod}
+            onChange={(e) =>
+              setSelectedPaymentMethod(e.target.value as PaymentMethod)
+            }
+          >
+            {Object.values(PaymentMethod).map((method) => (
+              <option key={method} value={method}>
+                {method}
+              </option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <div className="button-div">
+          <button className="pay-button" onClick={handlePay} disabled={loading}>
+            Pay
+          </button>
+        </div>
+      </form>
+      {loading && <InfinitySpin width="200" color="#8a1ff3" />}
+      {paymentResponse && (
+        <div className="response-div">
+          <p>Przejdź do płatności: {paymentResponse.redirectUrl}</p>
+        </div>
+      )}
+    </div>
+  );
+  
 };
 
 export default PaymentView;
