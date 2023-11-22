@@ -1,17 +1,21 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
-interface EditEventButtonViewProps{}
+interface EditEventButtonViewProps {
+}
 
-const EditEventButtonView: React.FC<EditEventButtonViewProps> = () => {
+interface EditEventButtonViewProps {
+    eventId: string;
+}
 
-    
-    
-
+const EditEventButtonView: React.FC<EditEventButtonViewProps> = (props) => {
+    const navigate = useNavigate();
+    function navigateToEditEvent() {
+        navigate("/events/" + props.eventId);
+    }
     return (
-        <button type="button" className="btn btn-primary">Edit Button</button>
+        <button type="button" className="btn btn-primary ml-5" onClick={navigateToEditEvent}>Edit Button</button>
     );
-
-                
 }
 
 export default EditEventButtonView;

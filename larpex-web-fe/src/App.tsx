@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<div>Home PAGE</div>} />
           <Route path="/events" element={<div>EVENTS PAGE</div>} />
-            <Route path="/events-organiser-panel" element={<EventOrganiserPanelView/>}/>
+          <Route path="/events-organiser-panel" element={<EventOrganiserPanelView events={[]}/>}/>
           <Route path="/start-payment" element={<PaymentStartView />} />
           <Route path="/payment" element={<PaymentView />} />
           <Route
