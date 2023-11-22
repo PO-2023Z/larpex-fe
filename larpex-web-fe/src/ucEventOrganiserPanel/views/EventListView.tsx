@@ -22,15 +22,14 @@ const EventListView: React.FC<EventListViewProps> = ({events}) => {
 
     return (
         <>
-            
-            
             <div className="EventListView">
-                
-                {events.map((item) => (
-                    <li><EventView name={item.name} desc={item.desc} id={item.id}/></li>
-                ))                     
-                    
-                }
+                <ul className="list-group">
+                    <li className="list-group-item list-group-item-dark"><h5><span className="d-inline-block text-truncate" style={{width: 30}}> ID</span> <span className="d-inline-block text-truncate" style={{width: 100}}> Name</span>   <span className="d-inline-block text-truncate" style={{width: 800}}> Description</span></h5></li>
+                    {events.map((item) => (
+                        <li className="list-group-item list-group-item-primary"><EventView name={item.name} desc={item.desc} id={item.id}/></li>
+                    ))
+                    }
+                </ul>
             </div>
         </>
     );
