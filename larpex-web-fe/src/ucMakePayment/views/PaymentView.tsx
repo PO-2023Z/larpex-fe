@@ -9,31 +9,29 @@ interface PaymentViewProps {}
 
 const PaymentView: React.FC<PaymentViewProps> = () => {
   const { paymentId, paymentPrice } = useParams();
-  const parsedPaymentPrice = paymentPrice ? parseInt(paymentPrice, 10) : 0;
+  const parsedPaymentAmount = paymentPrice;
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [paymentResponse, setPaymentResponse] = useState<{
-    //paymentStatus: PaymentStatus;
-    redirectUrl: string;
-  } | null>(null);
+  const [paymentResponse, setPaymentResponse] = useState<string>();
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<PaymentMethod>(PaymentMethod.CARD);
 
   const handlePay = async () => {
     try {
+      console.log("start paying");
       setLoading(true);
-      setPaymentResponse(null);
 
-      // Hardcoded userToken for simulation (replace with actual user authentication)
-      const userToken = "12345";
-      const paymentDto: PaymentDto = {
-        paymentId: Number(paymentId),
-        method: selectedPaymentMethod,
-        userToken,
-        //paymentPrice: parsedPaymentPrice,
-      };
+      let paymentDto: PaymentDto | undefined;
 
-      const response = await finalizePayment(paymentDto);
+      if (paymentId) {
+        paymentDto = {
+          paymentId: paymentId,
+          method: selectedPaymentMethod,
+        };
+      }
+
+      const response = await finalizePayment(paymentDto!);
+      console.log("response from create-transaction: ", response);
 
       setPaymentResponse(response);
     } catch (error) {
@@ -43,13 +41,11 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
     }
   };
 
-  /*
   return (
     <div className="payment-container">
       <form className="payment-form">
         <div className="payment-info">
-          <p>Payment ID: {paymentId}</p>
-          <p>Payment Amount: {parsedPaymentPrice}</p>
+          <p>Payment Amount: {parsedPaymentAmount}</p>
         </div>
         <label className="payment-method-label">
           Payment Method:
@@ -77,61 +73,21 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
       {loading && <InfinitySpin width="200" color="#8a1ff3" />}
       {paymentResponse && (
         <div className="response-div">
-          {paymentResponse.paymentStatus === PaymentStatus.FAILURE ? (
-            <Alert variant="danger" className="center-text">
-              Payment Status: {paymentResponse.paymentStatus}
-            </Alert>
-          ) : (
-            <Alert variant="success" className="center-text">
-              Payment Status: {paymentResponse.paymentStatus}
-            </Alert>
-          )}
-          <p>Redirect URL: {paymentResponse.redirectUrl}</p>
+          <p>
+            Redirect URL:
+            <a
+              href={paymentResponse}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="clickable-link"
+            >
+              {paymentResponse}
+            </a>
+          </p>
         </div>
       )}
     </div>
   );
-  */
- 
-  return (
-    <div className="payment-container">
-      <form className="payment-form">
-        <div className="payment-info">
-          <p>Payment ID: {paymentId}</p>
-          <p>Payment Amount: {parsedPaymentPrice}</p>
-        </div>
-        <label className="payment-method-label">
-          Payment Method:
-          <select
-            className="payment-method-select"
-            value={selectedPaymentMethod}
-            onChange={(e) =>
-              setSelectedPaymentMethod(e.target.value as PaymentMethod)
-            }
-          >
-            {Object.values(PaymentMethod).map((method) => (
-              <option key={method} value={method}>
-                {method}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <div className="button-div">
-          <button className="pay-button" onClick={handlePay} disabled={loading}>
-            Pay
-          </button>
-        </div>
-      </form>
-      {loading && <InfinitySpin width="200" color="#8a1ff3" />}
-      {paymentResponse && (
-        <div className="response-div">
-          <p>Przejdź do płatności: {paymentResponse.redirectUrl}</p>
-        </div>
-      )}
-    </div>
-  );
-  
 };
 
 export default PaymentView;
