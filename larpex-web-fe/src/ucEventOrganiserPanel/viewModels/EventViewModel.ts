@@ -1,13 +1,18 @@
 export interface EventViewDto {
     id: string;
     name: string;
+    descriptionForClient: string;
+    descriptionForEmployee: string;
     price: number;
-    locationName: string;
+    location: string;
     date: string;
-    description: string;
-    status: EventStatus;
+    // status: EventStatus;
     currentlySignedPlayers: number;
     maxPlayers: number;
+}
+
+export interface EventListViewDto{
+    events: EventViewDto[]
 }
 
 export enum EventStatus {
