@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AppLayout from "./globals/appLayout/AppLayout.tsx";
 import PaymentStartView from "./ucMakePayment/views/PaymentStartView.tsx";
 import PaymentView from "./ucMakePayment/views/PaymentView.tsx";
+import PaymentFinalView from "./ucMakePayment/views/PaymentFinalView.tsx";
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
           <Route path="/start-payment" element={<PaymentStartView />} />
           <Route path="/payment" element={<PaymentView />} />
           <Route
-            path="/payment/:paymentId/:paymentAmount"
+            path="/payment/:paymentId/:paymentPrice"
             element={<PaymentView />}
           />
+          <Route path="/payment-finalization/:paymentId" element={<PaymentFinalView />} />
           <Route path="*" element={<div>PAGE NOT FOUND</div>} />
         </Routes>
       </BrowserRouter>

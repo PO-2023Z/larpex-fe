@@ -1,41 +1,37 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { finalizePayment } from "../logic/PaymentService";
-import { PaymentMethod, PaymentStatus } from "../viewModels/PaymentViewModel";
+import { PaymentDto, PaymentMethod } from "../viewModels/PaymentViewModel";
 import { InfinitySpin } from "react-loader-spinner";
 import "./PaymentView.css";
-import { Alert } from "react-bootstrap";
 
 interface PaymentViewProps {}
 
 const PaymentView: React.FC<PaymentViewProps> = () => {
-  const { paymentId, paymentAmount } = useParams();
-  const parsedPaymentAmount = paymentAmount ? parseInt(paymentAmount, 10) : 0;
+  const { paymentId, paymentPrice } = useParams();
+  const parsedPaymentAmount = paymentPrice;
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [paymentResponse, setPaymentResponse] = useState<{
-    paymentStatus: PaymentStatus;
-    redirectUrl: string;
-  } | null>(null);
+  const [paymentResponse, setPaymentResponse] = useState<string>();
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<PaymentMethod>(PaymentMethod.CARD);
 
   const handlePay = async () => {
     try {
+      console.log("start paying");
       setLoading(true);
-      setPaymentResponse(null);
 
-      // Hardcoded userId for simulation (replace with actual user authentication)
-      const userId = "12345";
+      let paymentDto: PaymentDto | undefined;
 
-      const paymentDto = {
-        paymentId: Number(paymentId),
-        paymentMethod: selectedPaymentMethod,
-        userId,
-        paymentAmount: parsedPaymentAmount,
-      };
+      if (paymentId) {
+        paymentDto = {
+          paymentId: paymentId,
+          method: selectedPaymentMethod,
+        };
+      }
 
-      const response = await finalizePayment(paymentDto);
+      const response = await finalizePayment(paymentDto!);
+      console.log("response from create-transaction: ", response);
 
       setPaymentResponse(response);
     } catch (error) {
@@ -49,7 +45,6 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
     <div className="payment-container">
       <form className="payment-form">
         <div className="payment-info">
-          <p>Payment ID: {paymentId}</p>
           <p>Payment Amount: {parsedPaymentAmount}</p>
         </div>
         <label className="payment-method-label">
@@ -78,16 +73,17 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
       {loading && <InfinitySpin width="200" color="#8a1ff3" />}
       {paymentResponse && (
         <div className="response-div">
-          {paymentResponse.paymentStatus === PaymentStatus.FAILURE ? (
-            <Alert variant="danger" className="center-text">
-              Payment Status: {paymentResponse.paymentStatus}
-            </Alert>
-          ) : (
-            <Alert variant="success" className="center-text">
-              Payment Status: {paymentResponse.paymentStatus}
-            </Alert>
-          )}
-          <p>Redirect URL: {paymentResponse.redirectUrl}</p>
+          <p>
+            Redirect URL:
+            <a
+              href={paymentResponse}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="clickable-link"
+            >
+              {paymentResponse}
+            </a>
+          </p>
         </div>
       )}
     </div>

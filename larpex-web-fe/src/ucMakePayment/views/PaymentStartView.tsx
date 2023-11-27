@@ -11,9 +11,11 @@ const PaymentStartView: React.FC<PaymentStartViewProps> = () => {
 
   const handleInitPayment = async () => {
     try {
-      const initPaymentDto: InitPaymentDto = { eventId: "your_event_id" }; // Replace with actual eventId
+      const initPaymentDto: InitPaymentDto = {
+        eventId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      }; // Replace with actual eventId
       const response = await initPayment(initPaymentDto);
-      navigate(`/payment/${response.paymentId}/${response.paymentAmount}`);
+      navigate(`/payment/${response.paymentId}/${response.paymentPrice}`);
     } catch (error) {
       console.error("Error starting payment:", error);
     }

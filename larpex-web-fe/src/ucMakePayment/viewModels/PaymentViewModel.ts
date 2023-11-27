@@ -3,14 +3,17 @@ export interface InitPaymentDto {
 }
 
 export interface InitPaymentResponse {
-  paymentId: number;
-  paymentAmount: number;
+  paymentId: string;
+  paymentPrice: number;
 }
 
 export interface PaymentDto {
-  paymentId: number;
-  paymentMethod: PaymentMethod;
-  userId: string;
+  paymentId: string;
+  method: PaymentMethod;
+}
+
+export interface PaymentDtoResponse {
+  redirectUrl: string;
 }
 
 export enum PaymentMethod {
