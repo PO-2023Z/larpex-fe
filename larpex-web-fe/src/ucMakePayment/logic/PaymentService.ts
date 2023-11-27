@@ -49,13 +49,9 @@ export const finalizePayment = async (
   }
 };
 
-export const getPaymentStatus = async (
-  paymentId: string
-): Promise<string> => {
+export const getPaymentStatus = async (paymentId: string): Promise<string> => {
   try {
-    const response = await axios.get<string>(
-      apiUrl + `Payments/${paymentId}`
-    );
+    const response = await axios.get<string>(apiUrl + `Payments/${paymentId}`);
 
     const responseData: string = response.data;
     return responseData;
