@@ -23,7 +23,7 @@ const EventListView: React.FC<EventListViewProps> = ({events}) => {
                     </li>
                     {events.map((item) => (
                         <li className="list-group-item organiser-panel-content-2">
-                            <EventView name={item.name} desc={item.description} id={item.id}/>
+                            <EventView name={item.name} desc={item.descriptionForEmployee} id={item.id}/>
                         </li>
                     ))
                     }

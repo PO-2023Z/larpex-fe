@@ -1,12 +1,17 @@
-import {EventViewDto} from "../ucEventOrganiserPanel/viewModels/EventViewModel.ts";
+import {EventListViewDto, EventViewDto} from "../ucEventOrganiserPanel/viewModels/EventViewModel.ts";
 
 class EventGateway {
-    private readonly baseUrl: string = 'http://localhost:8080/api';
-    private readonly getEventsEndpoint: string = 'get-events';
+    // private readonly baseUrl: string = 'https://larpex-api-gateway.azurewebsites.net';
+    private readonly baseUrl: string = 'https://localhost:7096';
+    private readonly getEventsEndpoint: string = 'EventsInternalEmployee';
     async getEvents(): Promise<EventViewDto[]> {
         try {
-            const response = await fetch(`${this.baseUrl}/${this.getEventsEndpoint}`);
-            return await response.json();
+            return await fetch(`${this.baseUrl}/${this.getEventsEndpoint}`)
+                .then(r => r.json())
+                .then(r => r as EventListViewDto)
+                .then(r => {
+                    return r.events;
+                });
         } catch (error) {
             console.error('Error fetching data:', error);
             return []
