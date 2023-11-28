@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { finalizePayment } from "../logic/PaymentService";
-import { PaymentDto, PaymentMethod } from "../viewModels/PaymentViewModel";
-import { InfinitySpin } from "react-loader-spinner";
+import {
+  CreateTransactionDto,
+  CreateTransactionDtoResponse,
+  PaymentMethod,
+} from "../viewModels/PaymentViewModel";
+import { BallTriangle } from "react-loader-spinner";
 import "./PaymentView.css";
 
 interface PaymentViewProps {}
@@ -12,7 +16,8 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
   const parsedPaymentAmount = paymentPrice;
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [paymentResponse, setPaymentResponse] = useState<string>();
+  const [createTransactionResponse, setCreateTransactionResponse] =
+    useState<CreateTransactionDtoResponse>();
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<PaymentMethod>(PaymentMethod.CARD);
 
@@ -21,19 +26,19 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
       console.log("start paying");
       setLoading(true);
 
-      let paymentDto: PaymentDto | undefined;
+      let createTransactionDto: CreateTransactionDto | undefined;
 
       if (paymentId) {
-        paymentDto = {
+        createTransactionDto = {
           paymentId: paymentId,
           method: selectedPaymentMethod,
         };
       }
 
-      const response = await finalizePayment(paymentDto!);
+      const response = await finalizePayment(createTransactionDto!);
       console.log("response from create-transaction: ", response);
 
-      setPaymentResponse(response);
+      setCreateTransactionResponse(response);
     } catch (error) {
       console.error("Error while making payment:", error);
     } finally {
@@ -70,21 +75,30 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
           </button>
         </div>
       </form>
-      {loading && <InfinitySpin width="200" color="#8a1ff3" />}
-      {paymentResponse && (
-        <div className="response-div">
-          <p>
-            Redirect URL:
-            <a
-              href={paymentResponse}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="clickable-link"
-            >
-              {paymentResponse}
-            </a>
-          </p>
-        </div>
+      {loading ? (
+        <BallTriangle
+          height={100}
+          width={100}
+          radius={5}
+          color="#8a1ff3"
+          ariaLabel="ball-triangle-loading"
+          visible={true}
+        />
+      ) : (
+        <div style={{ width: 100, height: 100 }}></div>
+      )}
+      {createTransactionResponse && (
+        <p className="center-redirect">
+          Redirect URL:
+          <a
+            href={createTransactionResponse.redirectUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="clickable-link"
+          >
+            {createTransactionResponse.redirectUrl}
+          </a>
+        </p>
       )}
     </div>
   );

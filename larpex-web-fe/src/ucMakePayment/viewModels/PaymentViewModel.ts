@@ -7,13 +7,21 @@ export interface InitPaymentResponse {
   paymentPrice: number;
 }
 
-export interface PaymentDto {
+export interface CreateTransactionDto {
   paymentId: string;
   method: PaymentMethod;
 }
 
-export interface PaymentDtoResponse {
+export interface CreateTransactionDtoResponse {
   redirectUrl: string;
+}
+
+export interface PaymentStatusDto {
+  paymentId: string;
+}
+
+export interface PaymentStatusDtoResponse {
+  status: PaymentStatus;
 }
 
 export enum PaymentMethod {
@@ -25,7 +33,7 @@ export enum PaymentMethod {
 }
 
 export enum PaymentStatus {
-  SUCCESS = "SUCCESS",
-  FAILURE = "FAILURE",
-  NOTSTARTED = "NOTSTARTED",
+  SUCCESS = "Success",
+  FAILURE = "Failure",
+  NOTRESOLVED = "NotResolved",
 }

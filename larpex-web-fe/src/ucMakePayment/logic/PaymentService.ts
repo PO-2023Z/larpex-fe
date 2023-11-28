@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
 import {
+  CreateTransactionDto,
+  CreateTransactionDtoResponse,
   InitPaymentDto,
   InitPaymentResponse,
-  PaymentDto,
+  PaymentStatusDto,
+  PaymentStatusDtoResponse,
   //PaymentStatus,
 } from "../viewModels/PaymentViewModel";
 import { apiUrl, validJWT } from "../../globals/connections";
@@ -13,8 +16,7 @@ export const initPayment = async (
 ): Promise<InitPaymentResponse> => {
   try {
     const response = await axios.post<InitPaymentResponse>(
-      apiUrl + "Payments/init",
-      initPaymentDto
+      apiUrl + "Payments/init?eventId=" + initPaymentDto.eventId
     );
 
     const responseData: InitPaymentResponse = response.data;
@@ -26,14 +28,14 @@ export const initPayment = async (
 };
 
 export const finalizePayment = async (
-  paymentDto: PaymentDto
-): Promise<string> => {
+  createTransactionDto: CreateTransactionDto
+): Promise<CreateTransactionDtoResponse> => {
   try {
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    const response = await axios.post<string>(
+    const response = await axios.post<CreateTransactionDtoResponse>(
       apiUrl + "Payments/create-transaction",
-      paymentDto,
+      createTransactionDto,
       {
         headers: {
           Authorization: `Bearer ${validJWT}`,
@@ -41,7 +43,7 @@ export const finalizePayment = async (
       }
     );
 
-    const responseData: string = response.data;
+    const responseData: CreateTransactionDtoResponse = response.data;
     return responseData;
   } catch (error) {
     console.error("Error on creating transaction: ", error);
@@ -49,11 +51,15 @@ export const finalizePayment = async (
   }
 };
 
-export const getPaymentStatus = async (paymentId: string): Promise<string> => {
+export const getPaymentStatus = async (
+  paymentStatusDto: PaymentStatusDto
+): Promise<PaymentStatusDtoResponse> => {
   try {
-    const response = await axios.get<string>(apiUrl + `Payments/${paymentId}`);
+    const response = await axios.get<PaymentStatusDtoResponse>(
+      apiUrl + `Payments/${paymentStatusDto.paymentId}`
+    );
 
-    const responseData: string = response.data;
+    const responseData: PaymentStatusDtoResponse = response.data;
     return responseData;
   } catch (error) {
     console.error("Error on creating transaction: ", error);

@@ -14,13 +14,19 @@ function App() {
         <Routes>
           <Route path="/" element={<div>Home PAGE</div>} />
           <Route path="/events" element={<div>EVENTS PAGE</div>} />
-          <Route path="/start-payment" element={<PaymentStartView />} />
+          <Route
+            path="/start-payment/:eventId"
+            element={<PaymentStartView />}
+          />
           <Route path="/payment" element={<PaymentView />} />
           <Route
             path="/payment/:paymentId/:paymentPrice"
             element={<PaymentView />}
           />
-          <Route path="/payment-finalization/:paymentId" element={<PaymentFinalView />} />
+          <Route
+            path="/payment-finalization/:paymentId"
+            element={<PaymentFinalView />}
+          />
           <Route path="*" element={<div>PAGE NOT FOUND</div>} />
         </Routes>
       </BrowserRouter>
