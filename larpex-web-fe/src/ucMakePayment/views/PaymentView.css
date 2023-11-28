@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90dvh;
+  min-height: 90dvh;
   background-color: var(--gray-color);
 }
 
@@ -51,7 +51,7 @@
   background-color: transparent;
 }
 
-.response-div {
+.center-redirect {
   margin-top: 20px;
   text-align: center;
 }
