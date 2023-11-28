@@ -1,14 +1,14 @@
-import { CreateEventDto } from "../viewModels/CreateEventDto";
+import { CreateEventRequest, CreateEventDTO } from "../../api/larpex-api";
+import { createEventRequest } from "../../api/larpex-api-wrapper";
 
-export const createEvent = async (createEventDto: CreateEventDto): Promise<string> => {
+export const createEvent = async (createEventDto: CreateEventDTO): Promise<string> => {
     // Mocked API call (replace with actual API call)=
-    const mockedResponse = '764b1cc1-a09a-4c74-9ebe-abd7b802a691';
-
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log(createEventDto);
-        console.log("Mocked API Response:", );
-        resolve(mockedResponse);
-      }, 1000);
-    });
+    const request = { event: createEventDto, eventSettings: {} } as CreateEventRequest
+    try {
+      const response = await createEventRequest(request);
+      return response.event!.id ?? '';
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   };

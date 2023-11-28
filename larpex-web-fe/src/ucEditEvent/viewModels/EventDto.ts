@@ -1,4 +1,5 @@
 export interface EventDto {
+    eventId: string;
     eventName: string;
     gameId: string;
     locationId: string;

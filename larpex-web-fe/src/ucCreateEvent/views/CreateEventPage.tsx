@@ -56,12 +56,12 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
   const handleEventCreation = async () => {
     try {
       const eventId = await createEvent({
-        eventName,
-        gameId: selectedGame,
-        locationId: selectedLocation,
-        date: selectedDate!,
-        description: eventDescription,
-        icon: avatar!, price: costPerPerson!});
+        name: eventName,
+        game: selectedGame,
+        location: selectedLocation,
+        eventDate: selectedDate!,
+        employeeDescription: eventDescription,
+        price: costPerPerson!});
 
       navigate(`/start-payment/${eventId}`)
     } catch (error) {

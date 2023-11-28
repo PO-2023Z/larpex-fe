@@ -7,11 +7,11 @@ export const getGames = async (
     // Mocked API call (replace with actual API call)
     const mockedResponse: GameResponse[] = [
       {
-        gameId: 21,
+        gameId: '21',
         gameName: "chicken",
       }, 
       {
-        gameId: 37,
+        gameId: '37',
         gameName: "game 2"
       }];
     

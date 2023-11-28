@@ -6,11 +6,11 @@ export const getLocations = async (
     ): Promise<LocationResponse []> => {
       // Mocked API call (replace with actual API call)
       const mockedResponse: LocationResponse[] = [{
-        locationId: 6,
+        locationId: '6',
         locationName: "Długa 51",
       }, 
       {
-        locationId: 9,
+        locationId: '9',
         locationName: "Stara 21"
       }];
       
