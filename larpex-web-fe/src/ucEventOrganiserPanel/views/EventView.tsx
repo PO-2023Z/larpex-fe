@@ -16,7 +16,7 @@ interface EventViewProps {
 
 const EventView: React.FC<EventViewProps> = (EventViewProps) => {
 
-
+    const strDate=EventViewProps.startDate.slice(0,10)
     return (
 
         <div>
@@ -26,7 +26,7 @@ const EventView: React.FC<EventViewProps> = (EventViewProps) => {
                     <span className="d-inline-block text-truncate wdh-30">&nbsp;{EventViewProps.desc}</span>
                     <span className="d-inline-block text-truncate wdh-7"> &nbsp;{EventViewProps.currentlySignedPlayers}/{EventViewProps.maxPlayerLimit}</span>
                     <span className="d-inline-block text-truncate wdh-15">&nbsp;{EventViewProps.location}</span>
-                    <span className="d-inline-block text-truncate wdh-10">&nbsp;{EventViewProps.startDate}</span>
+                    <span className="d-inline-block text-truncate wdh-10">&nbsp;{strDate}</span>
                     <span className="d-inline-block text-truncate wdh-20">
                         <EditEventButtonView eventId={EventViewProps.id}/>
                         <InvitationButtonView/>
