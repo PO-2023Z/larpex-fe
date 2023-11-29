@@ -106,3 +106,9 @@
     border-radius: 4%;
   }
   
+  .error {
+    background-color: #ff8989;
+    border: 1px solid red;
+    padding: 20px;
+    color: red;
+  }

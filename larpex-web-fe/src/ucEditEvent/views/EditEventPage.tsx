@@ -12,6 +12,7 @@ import { EventDTO } from "../../api/larpex-api";
 interface EditEventPageProps {}
 
 const EditEventPage: React.FC<EditEventPageProps> = () => {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [event, setEvent] = useState<EventDTO | null>(null);
   const [eventName, setEventName] = useState<string>("");
@@ -26,8 +27,8 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
   const [locationsList, setLocationsList] = useState<LocationResponse[]>([]);
   const navigate = useNavigate();
 
-  const redirectToRoot = () => {
-    return navigate('/');
+  const redirectToOrganiserPanel = () => {
+    return navigate('/events-organiser-panel');
   };
 
   const fileUloadInputRef = useRef<HTMLInputElement>(null);
@@ -59,6 +60,7 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
         const games = await getGames();
         setGamesList(games);
       } catch (error) {
+        setErrorMessage('Błąd podczas ładowania!');
         console.error("Error fetching games:", error);
       }
     }
@@ -69,6 +71,7 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
         const locations = await getLocations();
         setLocationsList(locations);
       } catch (error) {
+        setErrorMessage('Błąd podczas ładowania!');
         console.error("Error fetching locations:", error);
       }
     }
@@ -84,6 +87,7 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
         setEvent(event!);
         updateFormInputs(event!);
       } catch (error) {
+        setErrorMessage('Błąd podczas ładowania!');
         console.error("Error fetching locations:", error);
       } finally {
         setLoading(false);
@@ -107,8 +111,9 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
         icon: avatar!, price: costPerPerson!});
       setEvent(updatedEvent!);
       updateForm(updatedEvent!);
-      navigate(`/events/${eventId}`)
+      navigate(`/events/${eventId}/success`)
     } catch (error) {
+      setErrorMessage('NIEPOPRAWNE DANE')
       console.error(error)
     }
   };
@@ -242,11 +247,16 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
 
       {/* Bottom buttons */}
       <div className="bottom-buttons">
-        <button className="cancel-button" onClick={redirectToRoot}>Cancel</button>
+        <button className="cancel-button" onClick={redirectToOrganiserPanel}>Cancel</button>
         <button className="create-button" onClick={handleEdit}>
           Save changes
         </button>
       </div>
+      
+      {errorMessage !== null ? <div className="error">
+        <h6>{errorMessage}</h6>
+        <button className="cancel-button" onClick={() => setErrorMessage(null)}>OK</button>
+      </div> : ''}
     </div>
   );
 };
