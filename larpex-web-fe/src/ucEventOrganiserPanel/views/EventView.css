@@ -1,3 +1,10 @@
+span.wdh-7{
+    min-width:7dvw;
+    max-width:7dvw;
+    float:left;
+    overflow: hidden;
+}
+
 span.wdh-10{
     min-width:10dvw;
     max-width:10dvw;
@@ -5,10 +12,17 @@ span.wdh-10{
     overflow: hidden;
 }
 
-span.wdh-20{
-    min-width:20dvw;
-    max-width:20dvh;
+span.wdh-15{
+    min-width:15dvw;
+    max-width:15dvw;
     float:left;
+    overflow: hidden;
+}
+
+span.wdh-20{
+    min-width:10dvw;
+    max-width:10dvh;
+    float:right;
     overflow: hidden;
 }
 
