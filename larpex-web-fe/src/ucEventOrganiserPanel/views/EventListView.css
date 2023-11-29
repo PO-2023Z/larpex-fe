@@ -1,0 +1,54 @@
+span.wdh-7{
+    min-width:7dvw;
+    max-width:7dvw;
+    float:left;
+    overflow: hidden;
+}
+
+span.wdh-10{
+    min-width:10dvw;
+    max-width:10dvw;
+    float:left;
+    overflow: hidden;
+}
+
+span.wdh-15{
+    min-width:15dvw;
+    max-width:15dvw;
+    float:left;
+    overflow: hidden;
+}
+
+span.wdh-20{
+    min-width:20dvw;
+    max-width:20dvw;
+    float:left;
+    overflow: hidden;
+}
+
+span.wdh-30{
+    min-width:30dvw;
+    max-width:30dvw;
+    float:left;
+    overflow: hidden;
+
+}
+
+li.organiser-panel-header{
+    background-color: var(--light-purple-color);
+    color:var(--secondary-color);
+}
+
+li.organiser-panel-content-2{
+    background-color: var(--secondary-color);
+    color:var(--dark-purple-color);
+}
+
+div.organiser-panel-title{
+    color:white;
+    background-color: var(--dark-purple-color);
+    border-top:1px solid white;
+    text-align: center;
+    padding-top:2dvh;
+    padding-bottom:2dvh;
+}

@@ -1,0 +1,39 @@
+span.wdh-7{
+    min-width:7dvw;
+    max-width:7dvw;
+    float:left;
+    overflow: hidden;
+}
+
+span.wdh-10{
+    min-width:10dvw;
+    max-width:10dvw;
+    float:left;
+    overflow: hidden;
+}
+
+span.wdh-15{
+    min-width:15dvw;
+    max-width:15dvw;
+    float:left;
+    overflow: hidden;
+}
+
+span.wdh-20{
+    min-width:10dvw;
+    max-width:10dvw;
+    float:right;
+    overflow: hidden;
+}
+
+span.wdh-30{
+    min-width:30dvw;
+    max-width:30dvw;
+    float:left;
+    overflow: hidden;
+}
+
+button.primary-button{
+    background-color: var(--dark-purple-color);
+    border: none;
+}
