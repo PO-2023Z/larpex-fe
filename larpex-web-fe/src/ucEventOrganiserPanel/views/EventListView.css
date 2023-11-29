@@ -21,14 +21,14 @@ span.wdh-15{
 
 span.wdh-20{
     min-width:20dvw;
-    max-width:20dvh;
+    max-width:20dvw;
     float:left;
     overflow: hidden;
 }
 
 span.wdh-30{
     min-width:30dvw;
-    max-width:30dvh;
+    max-width:30dvw;
     float:left;
     overflow: hidden;
 
