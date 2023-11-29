@@ -1,17 +1,21 @@
 import {EventListViewDto, EventViewDto} from "../ucEventOrganiserPanel/viewModels/EventViewModel.ts";
+import axios from "axios";
+import {apiUrl, validJWT} from "../globals/connections.ts";
 
 class EventGateway {
-    // private readonly baseUrl: string = 'https://larpex-api-gateway.azurewebsites.net';
-    private readonly baseUrl: string = 'https://localhost:7096';
+    private readonly localMockUrl: string = 'https://localhost:7096';
     private readonly getEventsEndpoint: string = 'EventsInternalEmployee';
     async getEvents(): Promise<EventViewDto[]> {
         try {
-            return await fetch(`${this.baseUrl}/${this.getEventsEndpoint}`)
-                .then(r => r.json())
-                .then(r => r as EventListViewDto)
-                .then(r => {
-                    return r.events;
-                });
+            const response = await axios.get<EventListViewDto>(
+                apiUrl + this.getEventsEndpoint,
+                {
+                    headers: {
+                        Authorization: `Bearer ${validJWT}`,
+                    }
+                }
+            );
+            return response.data.events;
         } catch (error) {
             console.error('Error fetching data:', error);
             return []

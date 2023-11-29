@@ -7,8 +7,6 @@ interface EventOrganiserPanelViewProps {
     events: EventViewDto[]
 }
 
-
-
 const EventOrganiserPanelView: React.FC<EventOrganiserPanelViewProps> = () => {
 
 
@@ -20,10 +18,6 @@ const EventOrganiserPanelView: React.FC<EventOrganiserPanelViewProps> = () => {
             try {
                 const result = await setUpEvents();
                 setData(result);
-                console.log("promise");
-                console.log(result);
-                console.log("data");
-                console.log(data);
             } catch (error) {
                 setData([])
                 // Handle errors here

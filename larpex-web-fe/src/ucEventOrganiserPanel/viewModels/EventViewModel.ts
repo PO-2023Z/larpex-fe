@@ -3,21 +3,28 @@ export interface EventViewDto {
     name: string;
     descriptionForClient: string;
     descriptionForEmployee: string;
-    price: number;
+    pricePerUser: number;
     location: string;
-    date: string;
-    // status: EventStatus;
+    startDate: string;
+    endDate: string;
+    eventStatus: EventStatus;
     currentlySignedPlayers: number;
-    maxPlayers: number;
+    eventSettings: EventSettings;
 }
 
 export interface EventListViewDto{
     events: EventViewDto[]
 }
 
+export interface EventSettings{
+    isExternalOrganiser: boolean;
+    isVisible: boolean;
+    maxPlayerLimit: number;
+}
+
 export enum EventStatus {
     CREATED = "Created",
-    IN_PROCESS = "InProcess",
+    IN_PROGRESS = "InProgress",
     PAUSED = "Paused",
     ENDED = "Ended"
 }
