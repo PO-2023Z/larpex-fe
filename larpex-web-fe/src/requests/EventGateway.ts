@@ -3,7 +3,6 @@ import axios from "axios";
 import {apiUrl, validJWT} from "../globals/connections.ts";
 
 class EventGateway {
-    private readonly localMockUrl: string = 'https://localhost:7096';
     private readonly getEventsEndpoint: string = 'EventsInternalEmployee';
     async getEvents(): Promise<EventViewDto[]> {
         try {
