@@ -16,11 +16,11 @@ const EventListView: React.FC<EventListViewProps> = ({events}) => {
                 <ul className="list-group">
                     <li className="list-group-item list-group-item-dark organiser-panel-header">
                         <h5>
-                            <span className="d-inline-block text-truncate wdh-15"> Name</span>
-                            <span className="d-inline-block text-truncate wdh-30"> &nbsp;Description</span>
-                            <span className="d-inline-block text-truncate wdh-7">  &nbsp;Entry </span>
-                            <span className="d-inline-block text-truncate wdh-7"> &nbsp;Price </span>
-                            <span className="d-inline-block text-truncate wdh-10"> &nbsp;Date </span>
+                            <span className="d-inline-block text-truncate wdh-15"> Nazwa</span>
+                            <span className="d-inline-block text-truncate wdh-30"> &nbsp;Opis</span>
+                            <span className="d-inline-block text-truncate wdh-7">  &nbsp;Miejsca</span>
+                            <span className="d-inline-block text-truncate wdh-7"> &nbsp;Cena</span>
+                            <span className="d-inline-block text-truncate wdh-10"> &nbsp;Data</span>
                         </h5>
                     </li>
                     {events.map((item) => (

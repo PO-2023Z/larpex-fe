@@ -14,7 +14,7 @@ const EditEventButtonView: React.FC<EditEventButtonViewProps> = (props) => {
         navigate("/events/" + props.eventId);
     }
     return (
-        <button type="button" className="btn btn-primary primary-button ml-1" onClick={navigateToEditEvent}>Edit</button>
+        <button type="button" className="btn btn-primary primary-button ml-1" onClick={navigateToEditEvent}>Edytuj</button>
     );
 }
 
