@@ -36,15 +36,15 @@ const PaymentFinalView: React.FC<PaymentFinalViewProps> = () => {
         <>
           {paymentResponse.status === PaymentStatus.FAILURE ? (
             <Alert variant="danger" className="center-text">
-              Payment Status: {paymentResponse.status}
+              Status Płatności: NIEPOWODZENIE
             </Alert>
           ) : paymentResponse.status === PaymentStatus.SUCCESS ? (
             <Alert variant="success" className="center-text">
-              Payment Status: {paymentResponse.status}
+              Status Płatności: SUKCES
             </Alert>
           ) : (
             <Alert variant="warning" className="center-text">
-              Payment Status: {paymentResponse.status}
+              Status Płatności: NIEPRZETWORZONA
             </Alert>
           )}
         </>
