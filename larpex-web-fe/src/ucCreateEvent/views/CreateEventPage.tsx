@@ -10,6 +10,7 @@ import "./CreateEventPage.css";
 interface CreateEventPageProps {}
 
 const CreateEventPage: React.FC<CreateEventPageProps> = () => {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [eventName, setEventName] = useState<string>("");
   const [selectedGame, setSelectedGame] = useState<string>("");
   const [costPerPerson, setCostPerPerson] = useState<number | undefined>(undefined);
@@ -36,6 +37,7 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
         setGamesList(games);
         setSelectedGame(games[0].gameId);
       } catch (error) {
+        setErrorMessage('Błąd podczas ładowania!');
         console.error("Error fetching games:", error);
       }
     }
@@ -47,6 +49,7 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
         setLocationsList(locations);
         setSelectedLocation(locations[0].locationId);
       } catch (error) {
+        setErrorMessage('Błąd podczas ładowania!');
         console.error("Error fetching locations:", error);
       }
     }
@@ -69,6 +72,7 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
 
       navigate(`/start-payment/${eventId}`)
     } catch (error) {
+      setErrorMessage('Błąd podczas ładowania!');
       console.error(error)
     }
   };
@@ -201,6 +205,11 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
           Create
         </button>
       </div>
+
+      {errorMessage !== null ? <div className="error">
+        <h6>{errorMessage}</h6>
+        <button className="cancel-button" onClick={() => setErrorMessage(null)}>OK</button>
+      </div> : ''}
     </div>
   );
 };
