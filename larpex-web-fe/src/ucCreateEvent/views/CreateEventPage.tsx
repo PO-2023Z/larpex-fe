@@ -34,6 +34,7 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
       try {
         const games = await getGames();
         setGamesList(games);
+        setSelectedGame(games[0].gameId);
       } catch (error) {
         console.error("Error fetching games:", error);
       }
@@ -44,6 +45,7 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
       try {
         const locations = await getLocations();
         setLocationsList(locations);
+        setSelectedLocation(locations[0].locationId);
       } catch (error) {
         console.error("Error fetching locations:", error);
       }
@@ -55,13 +57,15 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
 
   const handleEventCreation = async () => {
     try {
+      console.log(selectedGame);
       const eventId = await createEvent({
         name: eventName,
         game: selectedGame,
         location: selectedLocation,
-        eventDate: selectedDate!,
+        startDate: selectedDate!,
+        endDate: selectedDate!,
         employeeDescription: eventDescription,
-        price: costPerPerson!});
+        pricePerUser: costPerPerson!});
 
       navigate(`/start-payment/${eventId}`)
     } catch (error) {
@@ -97,7 +101,7 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
               onChange={(e) => setSelectedGame(e.target.value)}
             >
               {gamesList.map((game) => (
-                <option key={game.gameId} value={game.gameName}>
+                <option key="game" value={game.gameId}>
                   {game.gameName}
                 </option>
               ))}
@@ -124,7 +128,7 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
               onChange={(e) => setSelectedLocation(e.target.value)}
             >
               {locationsList.map((location) => (
-                <option key={location.locationId} value={location.locationName}>
+                <option key="location" value={location.locationId}>
                   {location.locationName}
                 </option>
               ))}

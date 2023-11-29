@@ -1,4 +1,4 @@
 export interface GameResponse {
-    gameId: number;
+    gameId: string;
     gameName: string;
   }

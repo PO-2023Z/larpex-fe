@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getGames } from "../logic/GameService";
 import { getLocations } from "../logic/LocationService";
-import { editEvent, getEvent } from "../logic/EventService";
+import { handleEditEvent, getEvent } from "../logic/EventService";
 import { GameResponse } from "../viewModels/GameViewModel";
 import { LocationResponse } from "../viewModels/LocationViewModel";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./EditEventPage.css";
-import { EventDto } from "../viewModels/EventDto";
 import { InfinitySpin } from "react-loader-spinner";
+import { EventDTO } from "../../api/larpex-api";
 
 interface EditEventPageProps {}
 
 const EditEventPage: React.FC<EditEventPageProps> = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [event, setEvent] = useState<EventDto | null>(null);
+  const [event, setEvent] = useState<EventDTO | null>(null);
   const [eventName, setEventName] = useState<string>("");
   const [selectedGame, setSelectedGame] = useState<string>("");
   const [costPerPerson, setCostPerPerson] = useState<number | undefined>(undefined);
@@ -31,18 +31,29 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
   };
 
   const fileUloadInputRef = useRef<HTMLInputElement>(null);
+  const { eventId } = useParams();
+
+  const updateForm = (event: EventDTO) => {
+      setEventName(event?.name ?? '');
+      setSelectedGame(event.game ?? '');
+      setSelectedLocation(event?.location ?? '');
+      setCostPerPerson(event?.pricePerUser ?? undefined);
+      setSelectedDate(event?.startDate?.substring(0, 10) ?? '');
+      setEventDescription(event?.descriptionForEmployee ?? '');
+      setAvatar(null);
+  }
 
   useEffect(() => {
-    function updateFormInputs(event: EventDto) {
-      setEventName(event?.eventName ?? '');
-      setSelectedGame(event?.gameId ?? '');
-      setSelectedLocation(event?.locationId ?? '');
-      setCostPerPerson(event?.price ?? undefined);
-      setSelectedDate(event?.date ?? '');
-      setEventDescription(event?.description ?? '');
-      setAvatar(event?.icon ?? null);
+    function updateFormInputs(event: EventDTO) {
+      setEventName(event?.name ?? '');
+      setSelectedGame(event.game ?? '');
+      setSelectedLocation(event?.location ?? '');
+      setCostPerPerson(event?.pricePerUser ?? undefined);
+      setSelectedDate(event?.startDate?.substring(0, 10) ?? '');
+      setEventDescription(event?.descriptionForEmployee ?? '');
+      setAvatar(null);
     }
-    // Fetch games list from GameService
+    // Fetch games list from GameService  
     async function fetchGames() {
       try {
         const games = await getGames();
@@ -63,11 +74,15 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
     }
 
     async function fetchEvent() {
+      if (!eventId) {
+        return;
+      }
+
       try {
         setLoading(true);
-        const event = await getEvent('');
-        setEvent(event);
-        updateFormInputs(event);
+        const event = await getEvent(eventId);
+        setEvent(event!);
+        updateFormInputs(event!);
       } catch (error) {
         console.error("Error fetching locations:", error);
       } finally {
@@ -82,15 +97,16 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
 
   const handleEdit = async () => {
     try {
-      const eventId = await editEvent({
-        eventId: event!.eventId!,
+      const updatedEvent = await handleEditEvent({
+        eventId: event!.id!,
         eventName,
         gameId: selectedGame,
         locationId: selectedLocation,
         date: selectedDate!,
         description: eventDescription,
         icon: avatar!, price: costPerPerson!});
-
+      setEvent(updatedEvent!);
+      updateForm(updatedEvent!);
       navigate(`/events/${eventId}`)
     } catch (error) {
       console.error(error)
@@ -125,11 +141,12 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
           <label>
             <span>Wybierz grę</span>
             <select
+              disabled
               value={selectedGame}
               onChange={(e) => setSelectedGame(e.target.value)}
             >
               {gamesList.map((game) => (
-                <option key={game.gameId} value={game.gameName}>
+                <option key="game" value={game.gameId}>
                   {game.gameName}
                 </option>
               ))}
@@ -152,11 +169,12 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
           <label>
             <span>Wybierz lokalizację</span>
             <select
+              disabled
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
             >
               {locationsList.map((location) => (
-                <option key={location.locationId} value={location.locationName}>
+                <option key="location" value={location.locationId}>
                   {location.locationName}
                 </option>
               ))}

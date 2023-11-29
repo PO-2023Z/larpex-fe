@@ -4,6 +4,13 @@ export const AXIOS_INSTANCE = Axios.create({
   baseURL: import.meta.env.VITE_LARPEX_API_URL,
 });
 
+AXIOS_INSTANCE.interceptors.request.use(function (config) {
+  const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFhYWFhQGFkZHNkYXNkYXMuY29tIiwibmJmIjoxNzAxMjkxMTY4LCJleHAiOjE3MDEyOTQ3NjgsImlhdCI6MTcwMTI5MTE2OCwiaXNzIjoiTGFycGV4QXBwIn0.56H4BSdc7jeJRiMqHxsgIaJiBpgaORsfVeKMg6C6A5g';
+  config.headers.Authorization =  token;
+   
+  return config;
+});
+
 export const customInstance = <T>(
   config: AxiosRequestConfig,
   options?: AxiosRequestConfig

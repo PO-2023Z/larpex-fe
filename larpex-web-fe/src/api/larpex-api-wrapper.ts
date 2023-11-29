@@ -4,8 +4,8 @@ import {
   CreateEventResponse,
   getEventsInternalOrganiserEventId,
   EventDTO,
-  UpdateEventRequest,
   putEventsInternalOrganiserEventId,
+  UpdateEventDTO,
 } from "./larpex-api";
 
 export async function createEventRequest(
@@ -19,7 +19,7 @@ export async function getEventById(eventId: string): Promise<EventDTO | undefine
     return event;
 }
 
-export async function editEvent(eventId: string, editEventRequest: UpdateEventRequest): Promise<EventDTO | undefined> {
-    const { event } = await putEventsInternalOrganiserEventId(eventId, editEventRequest);
+export async function editEvent(eventId: string, editEventDTO: UpdateEventDTO): Promise<EventDTO | undefined> {
+    const { event } = await putEventsInternalOrganiserEventId(eventId, { event: editEventDTO });
     return event;
 }
