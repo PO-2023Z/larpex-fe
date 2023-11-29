@@ -2,7 +2,6 @@
   "name": "larpex-web-fe",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,9 +10,17 @@
   },
   "dependencies": {
     "axios": "^1.6.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.18",
+    "@mui/x-date-pickers": "^6.18.1",
+    "axios": "^1.6.2",
     "bootstrap": "^4.6.0",
+    "dayjs": "^1.11.10",
+    "orval": "^6.20.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
+    "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.4.5",
     "react-router-dom": "^6.18.0"

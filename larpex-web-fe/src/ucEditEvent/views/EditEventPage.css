@@ -1,0 +1,114 @@
+.create-event-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .header {
+    width: 100%;
+  }
+  
+  .stripe {
+    background-color: #ccc;
+    padding: 10px;
+  }
+  
+  .purple-text {
+    color: purple;
+  }
+  
+  .form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .column {
+    flex: 1;
+    padding: 10px;
+  }
+
+  .column label {
+    width: 100%;
+    font-size: medium;
+  }
+
+  .column label span {
+    color: black;
+    font-weight: 700;
+    font-size: small;
+  }
+
+  .column input,
+  .column select,
+  .column textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+  }
+  
+  .input-with-suffix {
+    position: relative;
+  }
+  
+  .input-with-suffix input {
+    padding-right: 40px;
+  }
+  
+  .input-with-suffix span {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-75%);
+  }
+  
+  .bottom-buttons {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .cancel-button,
+  .create-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancel-button {
+    background-color: red;
+    color: white;
+  }
+  
+  .create-button {
+    background-color: green;
+    color: white;
+  }
+  
+  .cancel-button:hover,
+  .create-button:hover {
+    background-color: darken(#ccc, 10%);
+  }
+
+  .image-box {
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-box img {
+    max-width: 100%;
+    border: 2px solid black;
+    border-radius: 4%;
+  }
+  
+  .error {
+    background-color: #ff8989;
+    border: 1px solid red;
+    padding: 20px;
+    color: red;
+  }
