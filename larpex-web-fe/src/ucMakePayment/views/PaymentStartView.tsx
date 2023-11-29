@@ -25,7 +25,7 @@ const PaymentStartView: React.FC<PaymentStartViewProps> = () => {
   return (
     <div className="init-payment-div">
       <button className="start-payment-button" onClick={handleInitPayment}>
-        Start Payment
+        Rozpocznij płatność
       </button>
     </div>
   );

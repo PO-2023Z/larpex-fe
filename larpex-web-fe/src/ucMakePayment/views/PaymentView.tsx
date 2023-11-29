@@ -50,10 +50,10 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
     <div className="payment-container">
       <form className="payment-form">
         <div className="payment-info">
-          <p>Payment Amount: {parsedPaymentAmount}</p>
+          <p>Kwota za organizację: {parsedPaymentAmount}</p>
         </div>
         <label className="payment-method-label">
-          Payment Method:
+          Metoda płatności:
           <select
             className="payment-method-select"
             value={selectedPaymentMethod}
@@ -71,7 +71,7 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
         <br />
         <div className="button-div">
           <button className="pay-button" onClick={handlePay} disabled={loading}>
-            Pay
+            Rozpocznij transakcje
           </button>
         </div>
       </form>
@@ -89,7 +89,7 @@ const PaymentView: React.FC<PaymentViewProps> = () => {
       )}
       {createTransactionResponse && (
         <p className="center-redirect">
-          Redirect URL:
+          Serwis płatności:
           <a
             href={createTransactionResponse.redirectUrl}
             target="_blank"

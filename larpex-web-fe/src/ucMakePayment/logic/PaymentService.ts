@@ -31,7 +31,7 @@ export const finalizePayment = async (
   createTransactionDto: CreateTransactionDto
 ): Promise<CreateTransactionDtoResponse> => {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     const response = await axios.post<CreateTransactionDtoResponse>(
       apiUrl + "Payments/create-transaction",
