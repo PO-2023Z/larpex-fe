@@ -50,7 +50,7 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
       setSelectedGame(event.game ?? '');
       setSelectedLocation(event?.location ?? '');
       setCostPerPerson(event?.pricePerUser ?? undefined);
-      setSelectedDate(event?.startDate?.substring(0, 10) ?? '');
+      setSelectedDate(event?.startDate?.substring(0, 19) ?? '');
       setEventDescription(event?.descriptionForEmployee ?? '');
       setAvatar(null);
     }
