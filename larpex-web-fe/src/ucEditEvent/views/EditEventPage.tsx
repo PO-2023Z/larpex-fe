@@ -100,7 +100,7 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
   }, []);
 
   const handleEdit = async () => {
-    try {
+    try {      
       const updatedEvent = await handleEditEvent({
         eventId: event!.id!,
         eventName,
@@ -193,7 +193,7 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
 
           <label>
             <span>Wybierz datę</span>
-            <input type="date" name="selectedDate" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}/>
+            <input type="datetime-local" name="selectedDate" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}/>
           </label>
 
         </div>
