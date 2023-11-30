@@ -13,7 +13,7 @@ export const handleEditEvent = async (editEventDto: EditEventDto): Promise<Event
       clientDescription: '',
       currentlySignedPlayers: 0,
       employeeDescription: editEventDto.description,
-      endDate: endDate.toUTCString(),
+      endDate: endDate.toISOString(),
       eventStatus: 'Created',
       name: editEventDto.eventName,
       pricePerUser: editEventDto.price,
