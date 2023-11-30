@@ -61,12 +61,15 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
   const handleEventCreation = async () => {
     try {
       console.log(selectedGame);
+      const startDateObj = new Date(selectedDate!);
+      const eventDurationInHrs = 2;
+      const endDate = new Date(startDateObj.getTime() + eventDurationInHrs * 60 * 60 * 1000);
       const eventId = await createEvent({
         name: eventName,
         game: selectedGame,
         location: selectedLocation,
         startDate: selectedDate!,
-        endDate: selectedDate!,
+        endDate: endDate.toISOString(),
         employeeDescription: eventDescription,
         pricePerUser: costPerPerson!});
 
@@ -146,7 +149,7 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
 
           <label>
             <span>Wybierz datę</span>
-            <input type="date" name="selectedDate" onChange={(e) => setSelectedDate(e.target.value)}/>
+            <input type="datetime-local" name="selectedDate" onChange={(e) => setSelectedDate(e.target.value)}/>
           </label>
 
         </div>

@@ -4,12 +4,16 @@ import { EventDTO, UpdateEventDTO } from "../../api/larpex-api";
 import { EditEventDto } from "../viewModels/EditEventDto";
 
 export const handleEditEvent = async (editEventDto: EditEventDto): Promise<EventDTO | undefined> => {
-    // Mocked API call (replace with actual API call)=
+    
+    const startDateObj = new Date(editEventDto.date);
+    const eventDurationInHrs = 2;
+    const endDate = new Date(startDateObj.getTime() + eventDurationInHrs * 60 * 60 * 1000);
+
     const event = await editEvent(editEventDto.eventId, {
       clientDescription: '',
       currentlySignedPlayers: 0,
       employeeDescription: editEventDto.description,
-      endDate: editEventDto.date,
+      endDate: endDate.toUTCString(),
       eventStatus: 'Created',
       name: editEventDto.eventName,
       pricePerUser: editEventDto.price,
