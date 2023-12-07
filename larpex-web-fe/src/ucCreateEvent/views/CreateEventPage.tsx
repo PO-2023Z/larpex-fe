@@ -27,6 +27,30 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
     return navigate('/');
   };
 
+  const validateEventName = (name: string) => {
+    if (name.trim() === '') {
+      setErrorMessage('Event name cannot be empty');
+      return false;
+    }
+    return true;
+  };
+
+  const validateCostPerPerson = (cost: number | undefined) => {
+    if (cost === undefined || cost < 0) {
+      setErrorMessage('Cost per person should be a non-negative number');
+      return false;
+    }
+    return true;
+  };
+
+  const validateSelectedDate = (date: string | undefined) => {
+    if (date === undefined || new Date(date) < new Date()) {
+      setErrorMessage('Date should be greater than or equal to the current date');
+      return false;
+    }
+    return true;
+  };
+
   const fileUloadInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -59,6 +83,14 @@ const CreateEventPage: React.FC<CreateEventPageProps> = () => {
   }, []);
 
   const handleEventCreation = async () => {
+    let isValid = true;
+
+    isValid = validateEventName(eventName) && isValid;
+    isValid = validateCostPerPerson(costPerPerson) && isValid;
+    isValid = validateSelectedDate(selectedDate) && isValid;
+    if (!isValid) {
+      return; // Prevent further execution if validation fails
+    }
     try {
       console.log(selectedGame);
       const startDateObj = new Date(selectedDate!);

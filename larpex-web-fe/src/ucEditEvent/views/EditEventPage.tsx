@@ -34,6 +34,31 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
   const fileUloadInputRef = useRef<HTMLInputElement>(null);
   const { eventId } = useParams();
 
+  const validateEventName = (name: string) => {
+    if (name.trim() === '') {
+      setErrorMessage('Event name cannot be empty');
+      return false;
+    }
+    return true;
+  };
+
+  const validateCostPerPerson = (cost: number | undefined) => {
+    if (cost === undefined || cost < 0) {
+      setErrorMessage('Cost per person should be a non-negative number');
+      return false;
+    }
+    return true;
+  };
+
+  const validateSelectedDate = (date: string | undefined) => {
+    if (date === undefined || new Date(date) < new Date()) {
+      setErrorMessage('Date should be greater than or equal to the current date');
+      return false;
+    }
+    return true;
+  };
+
+
   const updateForm = (event: EventDTO) => {
       setEventName(event?.name ?? '');
       setSelectedGame(event.game ?? '');
@@ -100,6 +125,14 @@ const EditEventPage: React.FC<EditEventPageProps> = () => {
   }, []);
 
   const handleEdit = async () => {
+    let isValid = true;
+
+    isValid = validateEventName(eventName) && isValid;
+    isValid = validateCostPerPerson(costPerPerson) && isValid;
+    isValid = validateSelectedDate(selectedDate) && isValid;
+    if (!isValid) {
+      return; // Prevent further execution if validation fails
+    }
     try {      
       const updatedEvent = await handleEditEvent({
         eventId: event!.id!,
