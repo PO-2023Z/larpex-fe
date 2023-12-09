@@ -1,3 +1,24 @@
 .game-suggestion-div {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light-purple-color);
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.game-suggestion-title {
+  color: var(--dark-purple-color);
+  font-weight: 600;
+}
+
+.open-button {
+  border: 3px solid transparent;
+  transform: color 0.4s, background-color 0.4s, border 0.4s;
+}
+
+.open-button:hover {
+  color: var(--secondary-color);
+  background-color: var(--dark-purple-color);
+  border: 3px solid var(--dark-purple-color);
 }

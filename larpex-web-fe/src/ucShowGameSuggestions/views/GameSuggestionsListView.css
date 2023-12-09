@@ -1,0 +1,13 @@
+.game-suggestions-view-div {
+  min-height: 90dvh;
+  padding-left: 10dvw;
+  padding-right: 10dvw;
+  padding-top: 10px;
+  background-color: var(--gray-color);
+}
+
+.search-panel-div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}

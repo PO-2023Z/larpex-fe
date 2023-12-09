@@ -1,6 +1,6 @@
 import { GameSuggestionDto } from "../../viewModels/ShowGameSuggestionsModels";
-import "./GameSuggestionCard.css";
 import GameSuggestionCard from "./GameSuggestionCard";
+import "./GameSuggestionsList.css";
 
 interface GameSuggestionsListProps {
   items: GameSuggestionDto[];

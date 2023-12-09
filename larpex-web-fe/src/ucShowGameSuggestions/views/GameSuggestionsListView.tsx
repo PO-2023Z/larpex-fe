@@ -10,6 +10,7 @@ import GameSuggestionsList from "./components/GameSuggestionsList";
 import SortingComboBox from "../views/components/SortingComboBox";
 import GameNameBrowser from "./components/GameNameBrowser";
 import PaginationPanel from "./components/PaginationPanel";
+import { BallTriangle } from "react-loader-spinner";
 
 interface GameSuggestionsListViewProps {}
 
@@ -21,7 +22,7 @@ const GameSuggestionsListView: React.FC<GameSuggestionsListViewProps> = () => {
     useState<BrowseGameSuggestionsRequestDto>({
       gameName: "",
       sortExpression: undefined,
-      pageSize: 5,
+      pageSize: 4,
       pageNumber: 1,
     });
 
@@ -68,24 +69,34 @@ const GameSuggestionsListView: React.FC<GameSuggestionsListViewProps> = () => {
   };
 
   return (
-    <div>
-      <h1>Game Suggestions List</h1>
-      <SortingComboBox
-        selectedSortExpression={selectedSortExpression}
-        onSortChange={handleSortChange}
-      />
-      <GameNameBrowser onSearch={handleSearch} />
+    <div className="game-suggestions-view-div">
+      <div className="search-panel-div">
+        <SortingComboBox
+          selectedSortExpression={selectedSortExpression}
+          onSortChange={handleSortChange}
+        />
+        <GameNameBrowser onSearch={handleSearch} />
+      </div>
       {gameSuggestions ? (
         <>
           <GameSuggestionsList items={gameSuggestions.items} />
-          <PaginationPanel
-            currentPage={searchParams.pageNumber}
-            totalPages={gameSuggestions.totalPages}
-            onPageChange={handlePageChange}
-          />
+          <div className="centered-pagination">
+            <PaginationPanel
+              currentPage={searchParams.pageNumber}
+              totalPages={gameSuggestions.totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </>
       ) : (
-        <p>Loading...</p>
+        <BallTriangle
+          height={100}
+          width={100}
+          radius={5}
+          color="#8a1ff3"
+          ariaLabel="ball-triangle-loading"
+          visible={true}
+        />
       )}
     </div>
   );

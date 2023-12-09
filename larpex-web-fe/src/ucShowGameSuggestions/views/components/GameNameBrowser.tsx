@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./GameNameBrowser.css";
 
 interface GameNameBrowserProps {
   onSearch: (gameName: string) => void;
@@ -16,14 +17,17 @@ const GameNameBrowser: React.FC<GameNameBrowserProps> = ({ onSearch }) => {
   };
 
   return (
-    <div>
+    <div className="game-name-browser-container">
       <input
         type="text"
-        placeholder="Enter game name"
+        placeholder="Nazwa gry"
         value={inputValue}
         onChange={handleInputChange}
+        className="game-name-input"
       />
-      <button onClick={handleSearchClick}>Find</button>
+      <button onClick={handleSearchClick} className="search-button">
+        Find
+      </button>
     </div>
   );
 };
