@@ -14,16 +14,18 @@ export const browseGameSuggestions = async (
     items: gameSuggestions,
     itemFrom: 1,
     itemTo: 5,
-    totalItemsCount: 10,
+    totalItemsCount: 5,
     totalPages: 2,
   };
 
+  console.log("Taken requestDto: ", bgsRequestDto);
+
   return new Promise((resolve) => {
     setTimeout(() => {
-      console.log(
-        "BrowseGameSuggestions -> Mocked API Response:",
-        mockedResponse
-      );
+      // console.log(
+      //   "BrowseGameSuggestions -> Mocked API Response:",
+      //   mockedResponse
+      // );
       resolve(mockedResponse);
     }, 1000);
   });
