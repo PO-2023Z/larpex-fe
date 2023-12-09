@@ -9,6 +9,8 @@ import EventOrganiserPanelView from "./ucEventOrganiserPanel/views/EventOrganise
 import CreateEventPage from "./ucCreateEvent/views/CreateEventPage.tsx";
 import EditEventPage from "./ucEditEvent/views/EditEventPage.tsx";
 import EditEventSuccessPage from "./ucEditEvent/views/EditEventSuccess.tsx";
+import GameSuggestionsListView from "./ucShowGameSuggestions/views/GameSuggestionsListView.tsx";
+import GameSuggestionView from "./ucMakeVerdict/views/GameSuggestionView.tsx";
 
 function App() {
   return (
@@ -19,15 +21,24 @@ function App() {
           <Route path="/" element={<div>Home PAGE</div>} />
           <Route path="/create-event" element={<CreateEventPage />} />
           <Route path="/events/:eventId" element={<EditEventPage />} />
-          <Route path="/events/:eventId/success" element={<EditEventSuccessPage />}/>
+          <Route
+            path="/events/:eventId/success"
+            element={<EditEventSuccessPage />}
+          />
           <Route path="/events" element={<div>EVENTS PAGE</div>} />
-          <Route path="/events-organiser-panel" element={<EventOrganiserPanelView events={[]}/>}/>
+          <Route
+            path="/events-organiser-panel"
+            element={<EventOrganiserPanelView events={[]} />}
+          />
           <Route path="/start-payment" element={<PaymentStartView />} />
           <Route
             path="/start-payment/:eventId"
             element={<PaymentStartView />}
           />
-          <Route path="/start-payment/:eventId" element={<PaymentStartView />} />
+          <Route
+            path="/start-payment/:eventId"
+            element={<PaymentStartView />}
+          />
           <Route path="/payment" element={<PaymentView />} />
           <Route
             path="/payment/:paymentId/:paymentPrice"
@@ -36,6 +47,14 @@ function App() {
           <Route
             path="/payment-finalization/:paymentId"
             element={<PaymentFinalView />}
+          />
+          <Route
+            path="/game-suggestions"
+            element={<GameSuggestionsListView />}
+          />
+          <Route
+            path="/game-suggestions/:gameSuggestionId"
+            element={<GameSuggestionView />}
           />
           <Route path="*" element={<div>PAGE NOT FOUND</div>} />
         </Routes>

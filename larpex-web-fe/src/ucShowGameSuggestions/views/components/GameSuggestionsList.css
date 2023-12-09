@@ -1,0 +1,12 @@
+.game-suggestions-list-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+.centered-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

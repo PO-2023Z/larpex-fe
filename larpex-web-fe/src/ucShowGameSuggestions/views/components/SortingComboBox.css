@@ -1,0 +1,24 @@
+.sorting-container {
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
+}
+
+.sorting-label {
+  margin-right: 10px;
+  color: var(--main-color);
+}
+
+.sorting-select {
+  padding: 5px;
+  border: 3px solid var(--main-color);
+  border-radius: 4px;
+  width: 200px;
+  background-color: var(--secondary-color);
+  color: var(--dark-purple-color);
+}
+
+.sorting-select option {
+  background-color: var(--gray-color);
+  color: var(--main-color);
+}
