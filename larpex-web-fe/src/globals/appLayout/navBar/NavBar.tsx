@@ -38,6 +38,9 @@ function NavBar() {
                 >
                   <div className="ref-tile">Organizacja wydarzeń</div>
                 </Nav.Link>
+                <Nav.Link className="border-right" href="/game-suggestions">
+                  <div className="ref-tile">Propozycje gier</div>
+                </Nav.Link>
               </Nav>
             </td>
           </tr>
