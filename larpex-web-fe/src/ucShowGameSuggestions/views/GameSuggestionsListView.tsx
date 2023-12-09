@@ -89,14 +89,21 @@ const GameSuggestionsListView: React.FC<GameSuggestionsListViewProps> = () => {
           </div>
         </>
       ) : (
-        <BallTriangle
-          height={100}
-          width={100}
-          radius={5}
-          color="#8a1ff3"
-          ariaLabel="ball-triangle-loading"
-          visible={true}
-        />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <BallTriangle
+            height={100}
+            width={100}
+            radius={5}
+            color="#8a1ff3"
+            ariaLabel="ball-triangle-loading"
+            visible={true}
+          />
+        </div>
       )}
     </div>
   );
