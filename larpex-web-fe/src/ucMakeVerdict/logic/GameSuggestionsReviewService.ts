@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import {
-  Verdict,
   MakeVerdictRequestDto,
   GetGameSuggestionDetailsRequestDto,
   GetGameSuggestionDetailsResponseDto,
@@ -22,6 +21,8 @@ export const getGameSuggestionDetails = async (
       "https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fv7c7bmlgcfu61.jpg",
   };
 
+  console.log("Taken requestDto: ", ggsdRequestDto);
+
   return new Promise((resolve) => {
     setTimeout(() => {
       console.log(
@@ -38,6 +39,8 @@ export const makeVerdict = async (
 ): Promise<string> => {
   //mocked response
   const mockedResponse: string = "Verdict was sent successfully.";
+
+  console.log("Taken requestDto: ", mvRequestDto);
 
   return new Promise((resolve) => {
     setTimeout(() => {
