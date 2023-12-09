@@ -15,7 +15,7 @@ export const browseGameSuggestions = async (
     itemFrom: 1,
     itemTo: 5,
     totalItemsCount: 5,
-    totalPages: 2,
+    totalPages: 7,
   };
 
   console.log("Taken requestDto: ", bgsRequestDto);

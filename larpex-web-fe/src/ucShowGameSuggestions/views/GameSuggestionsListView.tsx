@@ -9,6 +9,7 @@ import { browseGameSuggestions } from "../logic/GameSuggestionsService";
 import GameSuggestionsList from "./components/GameSuggestionsList";
 import SortingComboBox from "../views/components/SortingComboBox";
 import GameNameBrowser from "./components/GameNameBrowser";
+import PaginationPanel from "./components/PaginationPanel";
 
 interface GameSuggestionsListViewProps {}
 
@@ -59,6 +60,13 @@ const GameSuggestionsListView: React.FC<GameSuggestionsListViewProps> = () => {
     }));
   };
 
+  const handlePageChange = (pageNumber: number) => {
+    setSearchParams((prevParams) => ({
+      ...prevParams,
+      pageNumber,
+    }));
+  };
+
   return (
     <div>
       <h1>Game Suggestions List</h1>
@@ -68,7 +76,14 @@ const GameSuggestionsListView: React.FC<GameSuggestionsListViewProps> = () => {
       />
       <GameNameBrowser onSearch={handleSearch} />
       {gameSuggestions ? (
-        <GameSuggestionsList items={gameSuggestions.items} />
+        <>
+          <GameSuggestionsList items={gameSuggestions.items} />
+          <PaginationPanel
+            currentPage={searchParams.pageNumber}
+            totalPages={gameSuggestions.totalPages}
+            onPageChange={handlePageChange}
+          />
+        </>
       ) : (
         <p>Loading...</p>
       )}
