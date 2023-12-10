@@ -1,0 +1,48 @@
+.game-suggestion-verdict-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--gray-color);
+  min-height: 90dvh;
+  padding-top: 20px;
+}
+
+.row {
+  width: 90dvw;
+  /* width: 80dvw; */
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-bottom: 10px;
+}
+
+.label {
+  color: var(--dark-purple-color);
+  font-weight: 800;
+  width: 30%;
+}
+
+.value {
+  width: 70%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.verdict-buttons-container {
+  display: flex;
+  gap: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.game-suggestion-details-card {
+  padding-top: 10px;
+  background-color: var(--light-purple-color);
+  border-radius: 15px;
+  box-shadow: 8px 8px 24px -9px rgba(66, 68, 90, 1);
+}

@@ -56,6 +56,10 @@ function App() {
             path="/game-suggestions/:gameSuggestionId"
             element={<GameSuggestionView />}
           />
+          <Route
+            path="/add-correction/:gameSuggestionId"
+            element={<div>uc - send suggestion</div>}
+          />
           <Route path="*" element={<div>PAGE NOT FOUND</div>} />
         </Routes>
       </BrowserRouter>
