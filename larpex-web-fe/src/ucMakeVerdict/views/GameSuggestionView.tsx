@@ -50,7 +50,7 @@ const GameSuggestionView: React.FC<GameSuggestionViewProps> = () => {
             />
             <Row label="Opis gry: " value={gameDetails.gameDescription} />
             <Row label="Scenariusz gry: " value={gameDetails.gameScenario} />
-            <Row label="Mapa: " value={gameDetails.mapUrl} />
+            <Row label="Mapa: " value={gameDetails.mapURL} />
           </div>
           <div className="verdict-buttons-container">
             <AcceptButton gameSuggestionId={gameSuggestionId || ""} />

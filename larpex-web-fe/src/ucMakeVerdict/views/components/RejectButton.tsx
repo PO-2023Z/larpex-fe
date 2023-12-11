@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { makeVerdict } from "../../logic/GameSuggestionsReviewService";
-import { Verdict } from "../../viewModels/MakeVerdictModels";
+import {
+  MakeVerdictRequestDto,
+  Verdict,
+} from "../../viewModels/MakeVerdictModels";
 import "./RejectButton.css";
 import VerdictJustificationView from "../VerdictJustificationView";
 
@@ -19,11 +22,13 @@ const RejectButton: React.FC<RejectButtonProps> = ({ gameSuggestionId }) => {
 
   const handleSendJustification = async (justification: string) => {
     try {
-      const response = await makeVerdict({
-        id: gameSuggestionId,
+      const requestDto: MakeVerdictRequestDto = {
+        gameId: gameSuggestionId,
         verdict: Verdict.REJECTED,
         explanation: justification,
-      });
+      };
+
+      const response = await makeVerdict(requestDto);
 
       console.log("Verdict sent successfully:", response);
 
