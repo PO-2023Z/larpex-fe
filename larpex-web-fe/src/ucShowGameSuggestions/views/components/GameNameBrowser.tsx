@@ -26,7 +26,7 @@ const GameNameBrowser: React.FC<GameNameBrowserProps> = ({ onSearch }) => {
         className="game-name-input"
       />
       <button onClick={handleSearchClick} className="search-button">
-        Find
+        Szukaj
       </button>
     </div>
   );
