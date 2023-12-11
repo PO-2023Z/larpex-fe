@@ -11,6 +11,7 @@ import EditEventPage from "./ucEditEvent/views/EditEventPage.tsx";
 import EditEventSuccessPage from "./ucEditEvent/views/EditEventSuccess.tsx";
 import GameSuggestionsListView from "./ucShowGameSuggestions/views/GameSuggestionsListView.tsx";
 import GameSuggestionView from "./ucMakeVerdict/views/GameSuggestionView.tsx";
+import GameCreatorView from "./ucGameCreatorPanel/views/GameCreatorView.tsx";
 
 function App() {
   return (
@@ -59,6 +60,10 @@ function App() {
           <Route
             path="/add-correction/:gameSuggestionId"
             element={<div>uc - send suggestion</div>}
+          />
+          <Route
+            path="/create-suggestions"
+            element={<GameCreatorView />}
           />
           <Route path="*" element={<div>PAGE NOT FOUND</div>} />
         </Routes>
