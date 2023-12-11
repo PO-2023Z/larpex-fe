@@ -17,7 +17,7 @@ const AcceptButton: React.FC<AcceptButtonProps> = ({ gameSuggestionId }) => {
 
   const handleAcceptClick = async () => {
     const requestDto: MakeVerdictRequestDto = {
-      id: gameSuggestionId,
+      gameId: gameSuggestionId,
       verdict: Verdict.ACCEPTED,
       explanation: "",
     };

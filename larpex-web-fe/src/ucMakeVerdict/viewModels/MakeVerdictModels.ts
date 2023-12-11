@@ -1,10 +1,10 @@
 export enum Verdict {
-  ACCEPTED = "Accepted",
-  REJECTED = "Rejected",
+  ACCEPTED = 0,
+  REJECTED = 1,
 }
 
 export interface MakeVerdictRequestDto {
-  id: string;
+  gameId: string;
   verdict: Verdict;
   explanation: string;
 }
@@ -20,5 +20,5 @@ export interface GetGameSuggestionDetailsResponseDto {
   maximumNumberOfPlayers: number;
   gameDescription: string;
   gameScenario: string;
-  mapUrl: string;
+  mapURL: string;
 }

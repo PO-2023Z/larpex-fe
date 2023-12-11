@@ -17,7 +17,9 @@ const GameSuggestionCard: React.FC<GameSuggestionDto> = ({
     <div className="game-suggestion-div">
       <div>
         <h3 className="game-suggestion-title">{gameName}</h3>
-        <p>Data dodania: {dateOfCreation.toLocaleDateString("en-GB")}</p>
+        {dateOfCreation instanceof Date && (
+          <p>Data dodania: {dateOfCreation.toLocaleDateString("en-GB")}</p>
+        )}
       </div>
       <div>
         <button className="open-button" onClick={handleOpenGameSuggestionCard}>
