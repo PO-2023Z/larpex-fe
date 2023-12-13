@@ -41,8 +41,8 @@ function NavBar() {
                 <Nav.Link className="border-right" href="/game-suggestions">
                   <div className="ref-tile">Propozycje gier</div>
                 </Nav.Link>
-                <Nav.Link className="border-right" href="/create-suggestions">
-                  <div className="ref-tile">Utwórz Propozycje gier</div>
+                <Nav.Link className="border-right" href="/game-creator/new-game">
+                  <div className="ref-tile">Kreator gier</div>
                 </Nav.Link>
               </Nav>
             </td>
