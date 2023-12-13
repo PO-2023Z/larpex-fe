@@ -37,3 +37,9 @@ button.primary-button{
     background-color: var(--dark-purple-color);
     border: none;
 }
+
+button.primary-button:disabled{
+    background-color: var(--light-purple-color);
+    border: none;
+    cursor: default;
+}
