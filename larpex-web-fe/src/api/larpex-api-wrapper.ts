@@ -10,7 +10,9 @@ import {
   GetGameSuggestionDetailsResponse,
   GetReviewerGamesGetSuggestionDetailsParams,
   UpdateGameDto,
-  postCreatorGamesModify
+  postCreatorGamesModify,
+  postReviewerGamesAddCorrection,
+  AddCorrectionRequest
 } from "./larpex-api";
 
 export async function createEventRequest(
@@ -36,4 +38,8 @@ export function getGameById(gameId: string): Promise<GetGameSuggestionDetailsRes
 
 export function modifyGame(updateGameDto: UpdateGameDto): Promise<void> {
   return postCreatorGamesModify({ game: updateGameDto });
+}
+
+export function addCorrection(gameId: string, message: string): Promise<void> {
+  return postReviewerGamesAddCorrection({ gameId, message } as AddCorrectionRequest);
 }

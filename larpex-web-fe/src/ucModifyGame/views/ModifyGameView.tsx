@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   GetGameSuggestionDetailsResponse,
   UpdateGameDto,
@@ -21,6 +21,7 @@ interface ValidatationErrors {
 
 const ModifyGameView: React.FC<ModifyGameViewProps> = () => {
   const { gameId } = useParams();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -122,7 +123,7 @@ const ModifyGameView: React.FC<ModifyGameViewProps> = () => {
     }
 
     fetchGame();
-  }, []);
+  }, [gameId]);
 
   if (loading) {
     return <InfinitySpin width="200" color="#8a1ff3" />;
@@ -240,10 +241,10 @@ const ModifyGameView: React.FC<ModifyGameViewProps> = () => {
       </div>
 
       <div className="bottom-buttons">
-        <button className="cancel-button" onClick={() => {}}>
+        <button className="cancel-button" onClick={() => navigate('/game-creator/my-games')}>
           Cancel
         </button>
-        <button className="update-button" onClick={updateGameDetails}>
+        <button className="create-button" onClick={updateGameDetails}>
           Zatwierdź
         </button>
       </div>
