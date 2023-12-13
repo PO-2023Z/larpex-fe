@@ -1,0 +1,25 @@
+.center-screen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: var(--secondary-color);
+    border: 5px solid var(--light-purple-color);
+    padding: 2vh;
+    z-index: 9999;
+}
+
+.thicc-title{
+    font-weight: bold;
+}
+
+.white-font{
+    color:var(--secondary-color);
+}
+
+.white-font:hover{
+    color:var(--dark-purple-color);
+    background-color:var(--light-purple-color);
+}
