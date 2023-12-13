@@ -14,7 +14,6 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.18",
     "@mui/x-date-pickers": "^6.18.1",
-    "axios": "^1.6.2",
     "bootstrap": "^4.6.0",
     "dayjs": "^1.11.10",
     "orval": "^6.20.0",
