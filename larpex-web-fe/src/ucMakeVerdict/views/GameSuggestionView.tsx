@@ -8,11 +8,15 @@ import BackButton from "./components/BackButton";
 import AddCorrectionButton from "./components/AddCorrectionButton";
 import AcceptButton from "./components/AcceptButton";
 import RejectButton from "./components/RejectButton";
+import AddCorrectionModal from "../../ucAddCorrection/components/AddCorrectionModal";
 
 interface GameSuggestionViewProps {}
 
 const GameSuggestionView: React.FC<GameSuggestionViewProps> = () => {
   const { gameSuggestionId } = useParams();
+
+  const [isCorrectionModalOpen, setIsCorrectionModalOpen] = useState(false);
+
   const [gameDetails, setGameDetails] =
     useState<GetGameSuggestionDetailsResponseDto | null>(null);
 
@@ -35,9 +39,14 @@ const GameSuggestionView: React.FC<GameSuggestionViewProps> = () => {
 
   return (
     <div className="game-suggestion-verdict-div">
+      <AddCorrectionModal
+        gameId={gameSuggestionId ?? ""}
+        isOpen={isCorrectionModalOpen}
+        onClose={() => setIsCorrectionModalOpen(false)}
+      ></AddCorrectionModal>
       <div className="button-container">
         <BackButton />
-        <AddCorrectionButton gameSuggestionId={gameSuggestionId || ""} />
+        <AddCorrectionButton onClick={() => setIsCorrectionModalOpen(true)} />
       </div>
       {gameDetails ? (
         <>

@@ -1,20 +1,14 @@
-import { useNavigation } from "../../logic/GameSuggestionsReviewService";
 import "./AddCorrectionButton.css";
 
 interface AddCorrectionButtonProps {
-  gameSuggestionId: string;
+  onClick: (e: React.MouseEvent) => void;
 }
 
 const AddCorrectionButton: React.FC<AddCorrectionButtonProps> = ({
-  gameSuggestionId,
+  onClick,
 }) => {
-  const { navigateToAddCorrection } = useNavigation();
-
   return (
-    <button
-      className="add-correction-button"
-      onClick={() => navigateToAddCorrection(gameSuggestionId)}
-    >
+    <button className="add-correction-button" onClick={(e) => onClick(e)}>
       Dodaj poprawkę
     </button>
   );

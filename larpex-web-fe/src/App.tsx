@@ -13,6 +13,7 @@ import GameSuggestionsListView from "./ucShowGameSuggestions/views/GameSuggestio
 import GameSuggestionView from "./ucMakeVerdict/views/GameSuggestionView.tsx";
 import GameCreatorView from "./ucGameCreatorPanel/views/newGame/GameCreatorView.tsx";
 import MyGamesView from "./ucGameCreatorPanel/views/myGames/MyGamesView.tsx";
+import ModifyGameView from "./ucModifyGame/views/ModifyGameView.tsx";
 
 function App() {
   return (
@@ -57,6 +58,10 @@ function App() {
           <Route
             path="/game-suggestions/:gameSuggestionId"
             element={<GameSuggestionView />}
+          />
+          <Route
+            path="/game/:gameId/edit"
+            element={<ModifyGameView />}
           />
           <Route
             path="/add-correction/:gameSuggestionId"
